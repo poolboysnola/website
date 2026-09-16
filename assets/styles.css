@@ -344,11 +344,41 @@ footer a:hover { color: var(--teal); }
 }
 .page-hero .hero-actions { margin-top: 30px; }
 
-/* Photo-backed hero (about page). The scrim is a gradient layer painted over
-   the photo, built from var(--bg) so it follows the light/dark theme for free.
-   Pair with .hero-copy to keep the text inside the opaque part of the scrim. */
+/* ---------- PHOTO HERO (reusable component) ------------------------------
+   A page hero with a photo behind the copy, scrimmed so the text stays
+   readable. The wave divider still goes inside the <section>, so the photo
+   ends on the wave exactly like a plain .page-hero does.
+
+   Usage — add .has-photo plus one image variant class:
+
+     <section class="page-hero has-photo photo-infinity">
+       <div class="wrap">
+         <nav class="breadcrumb">...</nav>
+         <div class="reveal hero-copy"> ...headline, lede, buttons... </div>
+       </div>
+       <svg class="wave-divider">...</svg>
+     </section>
+
+   To add a page, define a new .photo-* variant in the IMAGE VARIANTS block
+   below and put that class on the section. The url()s deliberately live in
+   this file rather than in a page's style attribute: Chrome resolves a
+   url() inside a custom property against the stylesheet that substitutes
+   it, not the page, so page-supplied paths silently 404. Keeping them here
+   makes "../images/..." correct and behave the same over file:// too.
+
+   Optional knobs, all with sane defaults:
+     --hero-photo-sm        image for stacked/narrow layout (default: same)
+     --hero-photo-size      default: cover
+     --hero-photo-position  default: right center
+     --hero-copy-max        width of the text column (default: 520px)
+   The scrim itself is theme-aware: it is built from var(--bg), so it fades
+   to cream in the light theme and to deep teal in the dark one.           */
 .page-hero.has-photo {
   --photo-tint: transparent;
+  --hero-photo-sm: var(--hero-photo);
+  --hero-photo-size: cover;
+  --hero-photo-position: right center;
+  --hero-copy-max: 520px;
   background-image:
     linear-gradient(94deg,
       var(--bg) 0%,
@@ -357,13 +387,25 @@ footer a:hover { color: var(--teal); }
       color-mix(in srgb, var(--bg) 26%, transparent) 74%,
       transparent 87%),
     linear-gradient(var(--photo-tint), var(--photo-tint)),
-    url("../images/about-hero-palm.jpg");
-  background-size: cover;
-  background-position: center, center, right center;
+    var(--hero-photo);
+  background-size: cover, cover, var(--hero-photo-size);
+  background-position: center, center, var(--hero-photo-position);
   background-repeat: no-repeat;
 }
 .page-hero.has-photo > .wrap { padding-bottom: 76px; }
-.page-hero.has-photo .hero-copy { max-width: 520px; }
+.page-hero.has-photo .hero-copy { max-width: var(--hero-copy-max); }
+
+/* --- IMAGE VARIANTS — one per page. Add new ones here. --- */
+.has-photo.photo-palm {
+  --hero-photo: url("../images/about-hero-palm.jpg");
+  --hero-photo-sm: url("../images/about-hero-palm-900.jpg");
+}
+/* Portrait source, so the stacked layout gets a landscape band crop —
+   otherwise the mobile band would only show the bottom of the frame. */
+.has-photo.photo-infinity {
+  --hero-photo: url("../images/infinity-hero.jpg");
+  --hero-photo-sm: url("../images/infinity-hero-sm.jpg");
+}
 
 /* The photo is bright, so knock it back when the dark theme is active. */
 :root[data-theme="dark"] .page-hero.has-photo {
@@ -561,7 +603,7 @@ footer a:hover { color: var(--teal); }
         color-mix(in srgb, var(--bg) 10%, transparent) 86%,
         transparent 97%),
       linear-gradient(var(--photo-tint), var(--photo-tint)),
-      url("../images/about-hero-palm-900.jpg");
+      var(--hero-photo-sm);
     background-size: cover, cover, 100% auto;
     background-position: center, center, center bottom;
   }
