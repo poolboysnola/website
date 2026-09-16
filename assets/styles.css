@@ -412,7 +412,7 @@ footer a:hover { color: var(--teal); }
 .has-photo.photo-modern {
   --hero-photo: url("../images/modern-hero.jpg");
   --hero-photo-sm: url("../images/modern-hero-sm.jpg");
-  --hero-photo-position: center 72%;
+  --hero-photo-position: center 66%;
 }
 
 /* --- FULL-BLEED BANNER MODIFIER ------------------------------------------
@@ -431,9 +431,9 @@ footer a:hover { color: var(--teal); }
     var(--hero-photo);
   background-size: cover, var(--hero-photo-size);
   background-position: center, var(--hero-photo-position);
-  padding-top: 92px;
+  padding-top: 118px;
 }
-.photo-banner > .wrap { padding-bottom: 100px; }
+.photo-banner > .wrap { padding-bottom: 140px; }
 .photo-banner h1 {
   color: #fff;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
