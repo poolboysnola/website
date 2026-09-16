@@ -25,7 +25,7 @@ const SITE = {
   // --- Top navigation ----------------------------------------------------
   // `section` = an anchor on the home page. `href` = a standalone page.
   nav: [
-    { label: 'Home', href: 'h2know-pool-co.html', page: 'home' },
+    { label: 'Home', href: 'index.html', page: 'home' },
     { label: 'Pool maintenance', href: 'pool-maintenance.html', page: 'pool-maintenance' },
     { label: 'Green pool recovery', href: 'green-pool-recovery.html', page: 'green-pool-recovery' },
     { label: 'Saltwater care', href: 'saltwater-care.html', page: 'saltwater-care' },

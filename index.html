@@ -16,14 +16,11 @@
 
 <main id="main">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow-pill">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-          Sunscreen optional. Water science, not.
-        </span>
+
+<!-- PAGE HERO -->
+  <section class="page-hero has-photo photo-banner photo-modern">
+    <div class="wrap">
+      <div class="reveal hero-copy">
         <h1>Your pool's <span class="swash">favorite nerds.</span></h1>
         <p class="lede">We're the ones who actually read the chlorine curve. Whether your pool runs salt, chlorine, or "honestly not sure" — we keep it balanced, sparkling, and drama-free.</p>
         <div class="hero-actions">
@@ -33,53 +30,6 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
-        <div class="hero-badges">
-          <div class="hero-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>
-            Salt-cell certified
-          </div>
-          <div class="hero-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            Same-week visits
-          </div>
-          <div class="hero-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6"/></svg>
-            No-jargon quotes
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-art">
-        <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <clipPath id="poolClip"><circle cx="210" cy="210" r="180"/></clipPath>
-          </defs>
-          <circle cx="210" cy="210" r="180" fill="var(--card)" stroke="var(--line)" stroke-width="1"/>
-          <g clip-path="url(#poolClip)">
-            <rect x="30" y="30" width="360" height="360" fill="var(--teal)"/>
-            <path d="M30 150c30 20 60 20 90 0s60-20 90 0 60 20 90 0 60-20 90 0v260H30z" fill="var(--teal-dark)" opacity="0.55"/>
-            <path d="M30 230c30 18 60 18 90 0s60-18 90 0 60 18 90 0 60-18 90 0v180H30z" fill="#ffffff" opacity="0.12"/>
-            <!-- sun -->
-            <circle cx="300" cy="95" r="30" fill="var(--gold)"/>
-            <g stroke="var(--gold)" stroke-width="5" stroke-linecap="round">
-              <line x1="300" y1="40" x2="300" y2="52"/>
-              <line x1="345" y1="60" x2="337" y2="68"/>
-              <line x1="355" y1="95" x2="343" y2="95"/>
-            </g>
-            <!-- palm leaf -->
-            <path d="M80 90c20-30 60-35 80-15-25-5-55 5-65 30 20-15 45-15 60 0-25 0-50 15-58 40-8-22-25-40-17-55z" fill="var(--lime)"/>
-            <!-- floating sunglasses -->
-            <g transform="translate(150,210)">
-              <rect x="0" y="10" width="46" height="34" rx="14" fill="var(--ink)"/>
-              <rect x="58" y="10" width="46" height="34" rx="14" fill="var(--ink)"/>
-              <path d="M46 24h12" stroke="var(--ink)" stroke-width="6"/>
-              <path d="M0 24c-14-10-14 14 0 10" stroke="var(--ink)" stroke-width="6" fill="none" stroke-linecap="round"/>
-              <path d="M104 24c14-10 14 14 0 10" stroke="var(--ink)" stroke-width="6" fill="none" stroke-linecap="round"/>
-            </g>
-            <!-- droplet -->
-            <path d="M235 275c0 14-11 22-22 22s-22-8-22-22c0-14 22-40 22-40s22 26 22 40z" fill="var(--coral)"/>
-          </g>
-        </svg>
       </div>
     </div>
 
@@ -88,97 +38,9 @@
     </svg>
   </section>
 
-  <!-- SALT VS CHLORINE -->
-  <section id="versus" class="section-band">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">The science bit</span>
-        <h2>Two systems. One set of geeks fluent in both.</h2>
-        <p>Most pool guys pick a lane. We didn't. Here's the honest rundown on what each system actually needs — no upsell, just chemistry.</p>
-      </div>
 
-      <div class="versus-grid">
-        <div class="versus-card salt">
-          <span class="tag">Salt water</span>
-          <h3>Low-drama, still a system</h3>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>A salt cell quietly turns dissolved salt into chlorine, so you're not dosing tablets by hand.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>Still a chlorine pool underneath — the generator just makes its own supply.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>pH tends to climb faster and needs closer watching than a standard setup.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>Salt is gentle on skin, less gentle on ladders and fittings — we use salt-rated gear.</li>
-          </ul>
-        </div>
-        <div class="versus-vs">VS</div>
-        <div class="versus-card chlorine">
-          <span class="tag">Chlorine</span>
-          <h3>Familiar, hands-on, effective</h3>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>Tablets or liquid added on a schedule — simple to understand, easy to source.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>Generally the stronger option against algae, which matters in shaded or high-use pools.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>Needs more frequent manual balancing, especially after rain or heavy swim days.</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12l6 6L20 6"/></svg>Lower equipment cost upfront, with simpler repairs down the line.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">What we do</span>
-        <h2>Everything your water needs, nothing it doesn't.</h2>
-        <p>Pick a weekly plan and forget about it, or call us in for the one-off jobs nobody wants to do themselves.</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="icon-badge" style="background:var(--teal);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 12c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><path d="M4 18c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><path d="M12 4v6"/></svg>
-          </div>
-          <h3>Weekly &amp; bi-weekly care</h3>
-          <p>Skim, brush, vacuum, basket empties, and a full water test every visit — the routine that keeps a pool boring in the best way.</p>
-        </div>
-        <div class="service-card">
-          <div class="icon-badge" style="background:var(--coral);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 3v6l-5 9a2 2 0 002 3h12a2 2 0 002-3l-5-9V3"/><path d="M9 3h6"/></svg>
-          </div>
-          <h3>Chemical balancing</h3>
-          <p>pH, alkalinity, and sanitizer levels dialed in for your system — salt cell or chlorine — so the water stays clear, not just clean-looking.</p>
-        </div>
-        <div class="service-card">
-          <div class="icon-badge" style="background:var(--gold);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg>
-          </div>
-          <h3>Green-to-clean rescue</h3>
-          <p>Inherited a swamp? We bring neglected pools back from algae bloom to swim-ready, usually inside a week.</p>
-        </div>
-        <div class="service-card">
-          <div class="icon-badge" style="background:var(--lime);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 4v-2M16 4v-2"/></svg>
-          </div>
-          <h3>Opening &amp; closing</h3>
-          <p>Season start-up and shutdown handled — covers off, chemicals right, equipment protected either way.</p>
-        </div>
-        <div class="service-card">
-          <div class="icon-badge" style="background:var(--teal-dark);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.9 2.9l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.6V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.9l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.6-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.6-1.1 1.7 1.7 0 00-.3-1.9l-.1-.1A2 2 0 117.2 4.3l.1.1a1.7 1.7 0 001.9.3H9.3A1.7 1.7 0 0010.4 3V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.6 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.9 2.9l-.1.1a1.7 1.7 0 00-.3 1.9v.1a1.7 1.7 0 001.6 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.6 1z"/></svg>
-          </div>
-          <h3>Equipment checkups</h3>
-          <p>Pumps, heaters, filters, and automation — inspected on every visit so small issues don't turn into pool-day emergencies.</p>
-        </div>
-        <div class="service-card">
-          <div class="icon-badge" style="background:var(--ink);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.5 7.2 16.9l.9-5.4-3.9-3.8 5.4-.8z"/></svg>
-          </div>
-          <h3>Salt cell service</h3>
-          <p>Cell cleaning, output calibration, and corrosion checks — the maintenance salt systems need that most people forget about.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
+ 
   <!-- HOW IT WORKS -->
   <section id="how" class="section-band">
     <div class="wrap">

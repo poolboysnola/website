@@ -406,6 +406,45 @@ footer a:hover { color: var(--teal); }
   --hero-photo: url("../images/infinity-hero.jpg");
   --hero-photo-sm: url("../images/infinity-hero-sm.jpg");
 }
+/* Wide 16:9 source. Used as a full-bleed banner (see .photo-banner), so the
+   crop is purely vertical — the position pushes the frame down past the blank
+   upper wall to the water, the lit coping and the planting. */
+.has-photo.photo-modern {
+  --hero-photo: url("../images/modern-hero.jpg");
+  --hero-photo-sm: url("../images/modern-hero-sm.jpg");
+  --hero-photo-position: center 72%;
+}
+
+/* --- FULL-BLEED BANNER MODIFIER ------------------------------------------
+   Add .photo-banner next to .has-photo when the photo should read as a
+   banner instead of a side image: no cream scrim eating the left half, the
+   frame runs edge to edge and the copy lies across the full width on top of
+   it. An even wash replaces the directional scrim — the photo stays fully
+   visible, just knocked back far enough to carry white text over the bright
+   white wall in it. Copy colours are fixed (not theme vars) because they sit
+   on the photo, not on --bg, in both themes.                              */
+.page-hero.has-photo.photo-banner {
+  --hero-copy-max: none;
+  --photo-wash: rgba(7, 26, 24, 0.56);
+  background-image:
+    linear-gradient(var(--photo-wash), var(--photo-wash)),
+    var(--hero-photo);
+  background-size: cover, var(--hero-photo-size);
+  background-position: center, var(--hero-photo-position);
+  padding-top: 92px;
+}
+.photo-banner > .wrap { padding-bottom: 100px; }
+.photo-banner h1 {
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+}
+.photo-banner h1 .swash { color: var(--gold); }
+.photo-banner p.lede {
+  color: rgba(255, 255, 255, 0.94);
+  max-width: none;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+.photo-banner .ghost-link { color: #fff; }
 
 /* The photo is bright, so knock it back when the dark theme is active. */
 :root[data-theme="dark"] .page-hero.has-photo {
@@ -609,6 +648,18 @@ footer a:hover { color: var(--teal); }
   }
   .page-hero.has-photo > .wrap { padding-bottom: 240px; }
   .page-hero.has-photo .hero-copy { max-width: none; }
+
+  /* Banner heroes stay a banner on narrow screens — the photo keeps filling
+     the section behind the copy instead of dropping to a band beneath it. */
+  .page-hero.has-photo.photo-banner {
+    background-image:
+      linear-gradient(var(--photo-wash), var(--photo-wash)),
+      var(--hero-photo-sm);
+    background-size: cover, cover;
+    background-position: center, center 72%;
+    padding-top: 64px;
+  }
+  .photo-banner > .wrap { padding-bottom: 64px; }
 }
 @media (max-width: 560px) {
   .services-grid { grid-template-columns: 1fr; }

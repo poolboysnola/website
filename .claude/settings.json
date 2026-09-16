@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '' \"s/--hero-photo-position: center [0-9]*%;/--hero-photo-position: center 76%;/\" assets/styles.css)",
+      "Bash(sips -f horizontal /tmp/ms.jpg --out /tmp/ms-flip.jpg)",
+      "Bash(sips -s format jpeg -s formatOptions 62 /tmp/ms-flip.jpg --out images/modern-hero-sm.jpg)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/final-mobile.png --window-size=420,860 --virtual-time-budget=4000 http://localhost:8777/index.html?f=1)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-dark-mode --screenshot=/tmp/final-dark.png --window-size=1440,620 --virtual-time-budget=4000 http://localhost:8777/index.html?f=2)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/final-wide.png --window-size=1920,700 --virtual-time-budget=4000 http://localhost:8777/index.html?f=3)",
+      "Bash(sips -s format jpeg -s formatOptions 58 /tmp/mh.jpg --out modern-hero.jpg)",
+      "Bash(sips -s format jpeg -s formatOptions 62 /tmp/ms.jpg --out modern-hero-sm.jpg)"
+    ]
+  }
+}
