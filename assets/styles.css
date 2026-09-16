@@ -156,7 +156,16 @@ nav.links a[aria-current="page"] {
 .mobile-nav .cta-btn {
   margin-top: 18px; align-self: flex-start; border-bottom: none;
 }
-@media (min-width: 881px) {
+/* Five nav links + brand + CTA stop fitting comfortably below ~1080px, so the
+   nav collapses to the drawer earlier than the rest of the layout reflows. */
+@media (max-width: 1080px) {
+  nav.links { display: none; }
+  .menu-toggle { display: inline-flex; }
+}
+@media (min-width: 1081px) and (max-width: 1180px) {
+  nav.links { gap: 22px; }
+}
+@media (min-width: 1081px) {
   .mobile-nav { display: none !important; }
 }
 
@@ -335,6 +344,37 @@ footer a:hover { color: var(--teal); }
 }
 .page-hero .hero-actions { margin-top: 30px; }
 
+/* Photo-backed hero (about page). The scrim is a gradient layer painted over
+   the photo, built from var(--bg) so it follows the light/dark theme for free.
+   Pair with .hero-copy to keep the text inside the opaque part of the scrim. */
+.page-hero.has-photo {
+  --photo-tint: transparent;
+  background-image:
+    linear-gradient(94deg,
+      var(--bg) 0%,
+      var(--bg) 48%,
+      color-mix(in srgb, var(--bg) 76%, transparent) 60%,
+      color-mix(in srgb, var(--bg) 26%, transparent) 74%,
+      transparent 87%),
+    linear-gradient(var(--photo-tint), var(--photo-tint)),
+    url("../images/about-hero-palm.jpg");
+  background-size: cover;
+  background-position: center, center, right center;
+  background-repeat: no-repeat;
+}
+.page-hero.has-photo > .wrap { padding-bottom: 76px; }
+.page-hero.has-photo .hero-copy { max-width: 520px; }
+
+/* The photo is bright, so knock it back when the dark theme is active. */
+:root[data-theme="dark"] .page-hero.has-photo {
+  --photo-tint: color-mix(in srgb, var(--bg) 46%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-hero.has-photo {
+    --photo-tint: color-mix(in srgb, var(--bg) 46%, transparent);
+  }
+}
+
 .breadcrumb {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 20px;
@@ -494,8 +534,6 @@ footer a:hover { color: var(--teal); }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 880px) {
-  nav.links { display: none; }
-  .menu-toggle { display: inline-flex; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-art { order: -1; max-width: 320px; margin: 0 auto; }
   .versus-grid { grid-template-columns: 1fr; }
@@ -509,6 +547,26 @@ footer a:hover { color: var(--teal); }
   .values-grid { grid-template-columns: 1fr 1fr; }
   .area-grid { grid-template-columns: 1fr; }
   .col-list { columns: 2; }
+
+  /* Narrow screens: scrim top-to-bottom instead of left-to-right, and size the
+     photo to full width rather than cover, so the whole composition (palms,
+     umbrellas, chairs) shows as a band under the copy instead of a zoomed-in
+     slice of it. */
+  .page-hero.has-photo {
+    background-image:
+      linear-gradient(to bottom,
+        var(--bg) 0%,
+        var(--bg) 64%,
+        color-mix(in srgb, var(--bg) 60%, transparent) 74%,
+        color-mix(in srgb, var(--bg) 10%, transparent) 86%,
+        transparent 97%),
+      linear-gradient(var(--photo-tint), var(--photo-tint)),
+      url("../images/about-hero-palm-900.jpg");
+    background-size: cover, cover, 100% auto;
+    background-position: center, center, center bottom;
+  }
+  .page-hero.has-photo > .wrap { padding-bottom: 240px; }
+  .page-hero.has-photo .hero-copy { max-width: none; }
 }
 @media (max-width: 560px) {
   .services-grid { grid-template-columns: 1fr; }

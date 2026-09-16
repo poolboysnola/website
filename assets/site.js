@@ -25,22 +25,23 @@ const SITE = {
   // --- Top navigation ----------------------------------------------------
   // `section` = an anchor on the home page. `href` = a standalone page.
   nav: [
-    { label: 'Services', section: 'services' },
-    { label: 'Salt vs. Chlorine', section: 'versus' },
-    { label: 'How it works', section: 'how' },
-    { label: 'Service area', href: 'service-area.html', page: 'service-area' },
-    { label: 'About us', href: 'about.html', page: 'about' }
+    { label: 'Home', href: 'h2know-pool-co.html', page: 'home' },
+    { label: 'Pool maintenance', href: 'pool-maintenance.html', page: 'pool-maintenance' },
+    { label: 'Green pool recovery', href: 'green-pool-recovery.html', page: 'green-pool-recovery' },
+    { label: 'Saltwater care', href: 'saltwater-care.html', page: 'saltwater-care' },
+    { label: 'FAQ', href: 'faq.html', page: 'faq' }
   ],
   cta: { label: 'Get a free quote', href: '#contact' },
 
   // --- Footer link columns ----------------------------------------------
   footerColumns: [
     {
-      title: 'Explore',
+      title: 'Services',
       links: [
-        { label: 'Services', section: 'services' },
-        { label: 'Salt vs. Chlorine', section: 'versus' },
-        { label: 'How it works', section: 'how' }
+        { label: 'Pool maintenance', href: 'pool-maintenance.html', page: 'pool-maintenance' },
+        { label: 'Green pool recovery', href: 'green-pool-recovery.html', page: 'green-pool-recovery' },
+        { label: 'Saltwater care', href: 'saltwater-care.html', page: 'saltwater-care' },
+        { label: 'FAQ', href: 'faq.html', page: 'faq' }
       ]
     },
     {
