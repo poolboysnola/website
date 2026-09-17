@@ -403,7 +403,7 @@ footer a:hover { color: var(--teal); }
 /* Portrait source, so the stacked layout gets a landscape band crop —
    otherwise the mobile band would only show the bottom of the frame. */
 .has-photo.photo-infinity {
-  --hero-photo: url("../images/infinity-hero.jpg");
+  --hero-photo: url("../images/infinity-pool.jpg");
   --hero-photo-sm: url("../images/infinity-hero-sm.jpg");
 }
 /* Wide 16:9 source. Used as a full-bleed banner (see .photo-banner), so the
