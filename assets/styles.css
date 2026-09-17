@@ -502,6 +502,41 @@ footer a:hover { color: var(--teal); }
   }
 }
 
+/* ---------- PHOTO STRIP (reusable component) -----------------------------
+   A full-bleed photo band for breaking up a long page. It borrows the same
+   image variants as the photo hero, so the markup is .has-photo plus one
+   .photo-* class — and no .page-hero, which is what keeps the hero's scrim
+   and padding out of it:
+
+     <section class="photo-strip has-photo photo-trees scroll-reveal"
+              role="img" aria-label="describe the photo"></section>
+
+   Empty on purpose: it carries no copy, so it is announced as an image
+   rather than as a blank landmark. Add .scroll-reveal to have it fade up as
+   it scrolls into view (see assets/site.js).                              */
+.photo-strip {
+  padding: 0;
+  height: clamp(240px, 34vw, 420px);
+  background-image: var(--hero-photo);
+  background-size: cover;
+  background-position: var(--hero-photo-position, center);
+  background-repeat: no-repeat;
+}
+
+/* ---------- SCROLL REVEAL ------------------------------------------------
+   site.js adds .js-reveal to <html> and then .is-visible to each
+   .scroll-reveal element as it enters the viewport. The hidden state hangs
+   off .js-reveal so that without JavaScript — or with reduced motion asked
+   for — the content is simply there.                                      */
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal .scroll-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .js-reveal .scroll-reveal.is-visible { opacity: 1; transform: none; }
+}
+
 .breadcrumb {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 20px;
@@ -582,6 +617,9 @@ footer a:hover { color: var(--teal); }
   font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
   color: var(--coral); display: block; margin-bottom: 4px;
 }
+/* The dots punch a ring out of whatever sits behind them, so inside a card the
+   ring has to be the card colour rather than the page background. */
+.side-card .timeline li::before { border-color: var(--card); }
 
 /* Service-area cards */
 .area-grid {
@@ -734,6 +772,159 @@ footer a:hover { color: var(--teal); }
 .contact-list a:hover { color: var(--teal); }
 .contact-list p { font-size: 0.94rem; margin-top: 2px; }
 
+/* ---------- QUOTE MODAL (multi-step form) --------------------------------
+   Injected into every page by assets/quote.js, opened by any link carrying
+   data-quote. Those links keep their href to contact.html, so with no
+   JavaScript the CTA still goes somewhere useful.                         */
+.quote-overlay { position: fixed; inset: 0; z-index: 200; display: none; }
+.quote-overlay[data-open] {
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.quote-backdrop {
+  position: absolute; inset: 0; border: none; padding: 0;
+  background: rgba(7, 26, 24, 0.62); cursor: pointer;
+}
+@supports (backdrop-filter: blur(3px)) {
+  .quote-backdrop { backdrop-filter: blur(3px); }
+}
+.quote-dialog {
+  position: relative;
+  width: min(660px, 100%); max-height: min(90vh, 880px); overflow-y: auto;
+  background: var(--card); border: 1px solid var(--line); border-radius: 26px;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.38);
+  padding: 26px 34px 32px;
+}
+/* The dialog takes focus on open so the question is read before the answers.
+   That is a programmatic focus, not a keyboard one, so it gets no ring. */
+.quote-dialog:focus { outline: none; }
+.quote-close {
+  position: absolute; top: 18px; right: 18px;
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  color: var(--ink); cursor: pointer;
+}
+.quote-close svg { width: 18px; height: 18px; }
+.quote-close:hover { background: color-mix(in srgb, var(--coral) 18%, var(--bg-soft)); }
+
+/* Completion line */
+.quote-progress { margin: 0 52px 26px 0; }
+.quote-progress-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--font-display); font-size: 0.84rem; font-weight: 600;
+  color: var(--ink-soft); margin-bottom: 8px;
+}
+.quote-progress-head .pct { color: var(--teal); }
+.quote-track {
+  height: 8px; border-radius: 100px; background: var(--bg-soft);
+  border: 1px solid var(--line); overflow: hidden;
+}
+.quote-bar {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--teal), var(--lime));
+  border-radius: 100px; transition: width 0.4s ease;
+}
+
+/* Steps. They are <section>s inside the dialog, so the page-level section
+   padding has to be turned off here. */
+.quote-step { display: none; padding: 0; }
+.quote-step[data-current] { display: block; }
+.quote-step fieldset { border: none; margin: 0; padding: 0; min-width: 0; }
+.quote-step legend, .quote-step h2 {
+  font-family: var(--font-display); font-weight: 600; padding: 0;
+  font-size: clamp(1.35rem, 3vw, 1.7rem); line-height: 1.15; color: var(--ink);
+}
+.quote-step .sub { margin-top: 10px; font-size: 0.97rem; }
+
+/* Tick-box answers. Radios under the hood — one answer per question — but
+   drawn as check boxes, and the whole card is the hit area. */
+.quote-options {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px;
+}
+.quote-options.stack { grid-template-columns: 1fr; }
+.quote-option {
+  display: flex; align-items: center; gap: 13px;
+  padding: 16px 18px; border-radius: 16px; cursor: pointer;
+  background: var(--bg-soft); border: 2px solid transparent;
+  font-size: 0.99rem; font-weight: 500; color: var(--ink);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.quote-option:hover { border-color: color-mix(in srgb, var(--teal) 45%, transparent); }
+.quote-option input {
+  position: absolute; width: 1px; height: 1px; opacity: 0;
+}
+.quote-box {
+  width: 24px; height: 24px; border-radius: 8px; flex-shrink: 0;
+  border: 2px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  background: var(--card); display: grid; place-items: center;
+}
+.quote-box svg { width: 15px; height: 15px; color: #fff; opacity: 0; }
+.quote-option input:checked ~ .quote-box {
+  background: var(--teal); border-color: var(--teal);
+}
+.quote-option input:checked ~ .quote-box svg { opacity: 1; }
+.quote-option:has(input:checked) {
+  border-color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 12%, var(--bg-soft));
+}
+.quote-option:has(input:focus-visible) {
+  outline: 3px solid var(--coral); outline-offset: 3px;
+}
+
+/* Last step — recap of the answers above the contact fields */
+.quote-recap {
+  margin: 20px 0 24px; padding: 18px 20px; border-radius: 16px;
+  background: var(--bg-soft); border: 1px solid var(--line);
+}
+.quote-recap dl { margin: 0; display: grid; gap: 8px; }
+.quote-recap div { display: flex; justify-content: space-between; gap: 16px; font-size: 0.92rem; }
+.quote-recap dt { color: var(--ink-soft); }
+.quote-recap dd { margin: 0; font-weight: 600; text-align: right; color: var(--ink); }
+.quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.quote-grid .field.full { grid-column: 1 / -1; }
+/* The page's textarea is 160px tall, which pushes Send below the fold in a
+   dialog. Shorter here — it is an optional extras box, not the main event. */
+.quote-grid textarea { min-height: 88px; }
+
+/* Foot: back on the left, next/send on the right */
+.quote-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-top: 26px;
+}
+.quote-back {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: none; border: none; cursor: pointer; padding: 8px 2px;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.94rem;
+  color: var(--ink-soft);
+}
+.quote-back svg { width: 15px; height: 15px; }
+.quote-back:hover { color: var(--teal); }
+.quote-back[hidden] { display: none; }
+
+/* Done panel */
+.quote-done { display: none; text-align: center; padding: 14px 0 6px; }
+.quote-done[data-current] { display: block; }
+.quote-done .tick {
+  width: 66px; height: 66px; border-radius: 50%; margin: 0 auto 22px;
+  background: color-mix(in srgb, var(--lime) 22%, transparent);
+  display: grid; place-items: center;
+}
+.quote-done .tick svg { width: 32px; height: 32px; color: var(--lime); }
+.quote-done h2 { margin-bottom: 12px; }
+.quote-done p { max-width: 420px; margin: 0 auto; }
+.quote-done .cta-btn { margin-top: 26px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .quote-step[data-current], .quote-done[data-current] {
+    animation: quote-step-in 0.32s ease both;
+  }
+  @keyframes quote-step-in {
+    from { opacity: 0; transform: translateX(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 880px) {
   .contact-grid { grid-template-columns: 1fr; gap: 34px; }
@@ -743,6 +934,12 @@ footer a:hover { color: var(--teal); }
   .versus-vs { width: 100%; padding: 6px 0; }
   .services-grid { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr; gap: 40px; }
+  /* Narrow screens get the 900px-wide source and a shallower band, so the
+     strip stays a band rather than a zoomed-in crop of one tree. */
+  .photo-strip {
+    height: clamp(190px, 46vw, 300px);
+    background-image: var(--hero-photo-sm, var(--hero-photo));
+  }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .cta-banner { padding: 40px 28px; }
   .split-grid { grid-template-columns: 1fr; gap: 34px; }
@@ -801,6 +998,16 @@ footer a:hover { color: var(--teal); }
   .values-grid { grid-template-columns: 1fr; }
   .col-list { columns: 1; }
   .callout { flex-direction: column; gap: 12px; }
+
+  /* Phone: the dialog takes the whole screen, and answers stack so labels
+     aren't squeezed into two narrow columns. */
+  .quote-overlay[data-open] { padding: 0; }
+  .quote-dialog {
+    width: 100%; max-height: 100%; min-height: 100%;
+    border-radius: 0; border: none; padding: 22px 20px 32px;
+  }
+  .quote-options { grid-template-columns: 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

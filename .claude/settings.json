@@ -33,7 +33,21 @@
       "Bash(sips -c 420 1440 --cropOffset 760 0 /tmp/pm-full.png --out /tmp/pm-seam2.png)",
       "Bash(sed 's/\\\\$$/[EOL]/')",
       "Bash(awk 'NR>=84 && NR<=92 {printf \"%d:[%s]\\\\n\", NR, $0}' faq.html)",
-      "Bash(awk 'NR>=112 && NR<=118 {printf \"%d:[%s]\\\\n\", NR, $0}' faq.html)"
+      "Bash(awk 'NR>=112 && NR<=118 {printf \"%d:[%s]\\\\n\", NR, $0}' faq.html)",
+      "Bash(sips -c 1400 1440 --cropOffset 900 0 /tmp/gpr.png --out /tmp/gpr-crop.png)",
+      "Bash(sips -Z 760 /tmp/gpr-crop.png)",
+      "Bash(rm /Users/figs/Documents/poolboysnola/_striptest.html)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=430,1200 --screenshot=/tmp/gpr-m.png --virtual-time-budget=3500 \"file:///Users/figs/Documents/poolboysnola/green-pool-recovery.html\")",
+      "Bash(sips -c 1000 430 --cropOffset 1100 0 /tmp/gpr-m.png --out /tmp/gpr-m2.png)",
+      "Bash(sips -c 620 430 --cropOffset 1650 0 /tmp/gpr-m.png --out /tmp/gpr-m3.png)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=430,3000 --screenshot=/tmp/idx.png --virtual-time-budget=3000 \"file:///Users/figs/Documents/poolboysnola/index.html\")",
+      "Bash(sips -c 500 430 --cropOffset 900 0 /tmp/idx.png --out /tmp/idx2.png)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=1440,3400 --screenshot=/tmp/idx3.png --virtual-time-budget=4000 \"file:///Users/figs/Documents/poolboysnola/index.html\")",
+      "Bash(sips -c 1300 1440 --cropOffset 900 0 /tmp/idx3.png --out /tmp/idx4.png)",
+      "Bash(sips -Z 740 /tmp/idx4.png)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=430,5000 --screenshot=/tmp/idxm.png --virtual-time-budget=3500 \"file:///Users/figs/Documents/poolboysnola/index.html\")",
+      "Bash(sips -c 600 430 --cropOffset 1450 0 /tmp/idxm.png --out /tmp/idxm2.png)",
+      "Bash(node --check assets/quote.js)"
     ]
   }
 }

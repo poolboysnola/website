@@ -101,14 +101,14 @@ function headerHTML() {
     <nav class="links" aria-label="Main">
       ${SITE.nav.map(item => navLink(item)).join('\n      ')}
     </nav>
-    <a href="${SITE.cta.href}" class="cta-btn">${SITE.cta.label}</a>
+    <a href="${SITE.cta.href}" class="cta-btn" data-quote>${SITE.cta.label}</a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
     ${SITE.nav.map(item => navLink(item)).join('\n    ')}
-    <a href="${SITE.cta.href}" class="cta-btn">${SITE.cta.label}</a>
+    <a href="${SITE.cta.href}" class="cta-btn" data-quote>${SITE.cta.label}</a>
   </nav>
 </header>`;
 }
@@ -183,4 +183,23 @@ if (toggle && drawer) {
       toggle.setAttribute('aria-label', 'Open menu');
     }
   });
+}
+
+/* ---------- scroll reveal ------------------------------------------------
+   Anything with class="scroll-reveal" fades up the first time it scrolls
+   into view. The .js-reveal flag on <html> is what arms the hidden state in
+   the stylesheet, so if this script never runs the content stays visible;
+   reduced-motion preferences are handled in CSS.                          */
+
+const revealTargets = document.querySelectorAll('.scroll-reveal');
+if (revealTargets.length && 'IntersectionObserver' in window) {
+  document.documentElement.classList.add('js-reveal');
+  const observer = new IntersectionObserver((entries, self) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      self.unobserve(entry.target); // reveal once, not on every pass
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  revealTargets.forEach(el => observer.observe(el));
 }
