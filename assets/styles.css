@@ -414,6 +414,52 @@ footer a:hover { color: var(--teal); }
   --hero-photo-sm: url("../images/modern-hero-sm.jpg");
   --hero-photo-position: center 66%;
 }
+/* The five below are all pre-cut to 16:9 (1800w desktop / 900w stacked), so
+   like .photo-modern the crop left to do here is purely vertical — a hero band
+   is far wider than 16:9, so only about the middle 60% of each frame is ever on
+   screen. Each position below picks which 60%. Four of the five sources are
+   portrait, so the band was already chosen once when the -hero files were cut;
+   these percentages only nudge inside that band. */
+
+/* Loungers sit high in the frame, the lap pool crosses the middle. Slightly
+   past centre drops the empty paving at the top and keeps water in shot. */
+.has-photo.photo-cuntry-club {
+  --hero-photo: url("../images/cuntry-club-hero.jpg");
+  --hero-photo-sm: url("../images/cuntry-club-hero-sm.jpg");
+  --hero-photo-position: center 56%;
+}
+/* The only landscape source, and the only one with people in it. Wants
+   .photo-banner: the subject is dead centre, so the side-photo scrim cuts the
+   jumper in half and leaves a stray limb at the fade. Held right at the top of
+   the frame because a hero band is shallower than the leap is tall — anything
+   past ~12% decapitates him, which costs more than clipping the float. */
+.has-photo.photo-jumping {
+  --hero-photo: url("../images/jumping-hero.jpg");
+  --hero-photo-sm: url("../images/jumping-hero-sm.jpg");
+  --hero-photo-position: center 8%;
+}
+/* Tall pavilion with the waterline low in the frame. Weighted well down so the
+   band holds the pool edge and the planting rather than the roofline. */
+.has-photo.photo-magnolia {
+  --hero-photo: url("../images/magnolia-hero.jpg");
+  --hero-photo-sm: url("../images/magnolia-hero-sm.jpg");
+  --hero-photo-position: center 68%;
+}
+/* Dusk shot: pink sky up top, flamingo float dead centre with its reflection
+   below it. Centre keeps float and reflection together — that pairing is the
+   whole picture, so this is the one variant best left near 50%. */
+.has-photo.photo-paradise-park {
+  --hero-photo: url("../images/paradise-park-hero.jpg");
+  --hero-photo-sm: url("../images/paradise-park-hero-sm.jpg");
+  --hero-photo-position: center 52%;
+}
+/* Tree line over a long rectangular pool. Down past centre so the band trades
+   sky for water while keeping the trunks as a backdrop. */
+.has-photo.photo-trees {
+  --hero-photo: url("../images/trees-hero.jpg");
+  --hero-photo-sm: url("../images/trees-hero-sm.jpg");
+  --hero-photo-position: center 62%;
+}
 
 /* --- FULL-BLEED BANNER MODIFIER ------------------------------------------
    Add .photo-banner next to .has-photo when the photo should read as a

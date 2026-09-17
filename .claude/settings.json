@@ -23,7 +23,10 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/pm-1.png --window-size=1280,2000 --virtual-time-budget=3500 http://localhost:8777/pool-maintenance.html?p=1)",
       "Bash(sips -c 2600 1280 --out /tmp/pm-bottom-raw.png pm-full.png)",
       "Bash(sips -g pixelHeight -g pixelWidth /tmp/pm-bottom-raw.png)",
-      "Bash(sips -Z 1450 /tmp/pm-bottom-raw.png --out /tmp/pm-bottom.png)"
+      "Bash(sips -Z 1450 /tmp/pm-bottom-raw.png --out /tmp/pm-bottom.png)",
+      "Bash(sips --version)",
+      "Bash(sips --help)",
+      "Bash(python3 -c \"import PIL; print\\('PIL', PIL.__version__\\)\")"
     ]
   }
 }
