@@ -15,7 +15,7 @@
 const SITE = {
   name: 'Pool Boys NOLA',
   tagline: 'Powered by chemistry — and a genuine love of clear, blue water. Salt or chlorine, we speak your pool’s language.',
-  home: 'h2know-pool-co.html',
+  home: 'index.html',
 
   // --- Contact details: change these in one place -------------------------
   email: 'hello@poolboysnola.com',
@@ -29,9 +29,10 @@ const SITE = {
     { label: 'Pool maintenance', href: 'pool-maintenance.html', page: 'pool-maintenance' },
     { label: 'Green pool recovery', href: 'green-pool-recovery.html', page: 'green-pool-recovery' },
     { label: 'Saltwater care', href: 'saltwater-care.html', page: 'saltwater-care' },
-    { label: 'FAQ', href: 'faq.html', page: 'faq' }
+    { label: 'FAQ', href: 'faq.html', page: 'faq' },
+    { label: 'Contact', href: 'contact.html', page: 'contact' }
   ],
-  cta: { label: 'Get a free quote', href: '#contact' },
+  cta: { label: 'Get a free quote', href: 'contact.html' },
 
   // --- Footer link columns ----------------------------------------------
   footerColumns: [
@@ -49,7 +50,7 @@ const SITE = {
       links: [
         { label: 'About us', href: 'about.html', page: 'about' },
         { label: 'Service area', href: 'service-area.html', page: 'service-area' },
-        { label: 'Get a free quote', href: '#contact' }
+        { label: 'Contact us', href: 'contact.html', page: 'contact' }
       ]
     }
   ]

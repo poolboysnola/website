@@ -112,7 +112,10 @@ header.site-nav {
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
 .brand-mark { width: 40px; height: 40px; flex-shrink: 0; }
 .brand-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; }
-nav.links { display: flex; align-items: center; gap: 30px; }
+/* Fluid gap: six links, the brand and the CTA only just fit the 1120px row,
+   so the spacing gives way as the viewport narrows instead of the last link
+   colliding with the button. */
+nav.links { display: flex; align-items: center; gap: clamp(14px, 1.5vw, 26px); }
 nav.links a {
   text-decoration: none; font-weight: 500; font-size: 0.98rem; color: var(--ink-soft);
   transition: color 0.15s ease;
@@ -161,9 +164,6 @@ nav.links a[aria-current="page"] {
 @media (max-width: 1080px) {
   nav.links { display: none; }
   .menu-toggle { display: inline-flex; }
-}
-@media (min-width: 1081px) and (max-width: 1180px) {
-  nav.links { gap: 22px; }
 }
 @media (min-width: 1081px) {
   .mobile-nav { display: none !important; }
@@ -613,8 +613,84 @@ footer a:hover { color: var(--teal); }
   width: 9px; height: 9px; border-radius: 50%; background: var(--lime);
 }
 
+/* ---------- CONTACT FORM ----------
+   The card is the same shape as .side-card so the form sits in the page like
+   the other content blocks. Status messages are driven by assets/contact.js,
+   which sets data-state on .form-status — the element stays in the DOM (it is
+   an aria-live region) and is only revealed once there is something to say. */
+.contact-grid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: start;
+}
+.form-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 24px;
+  padding: 32px 30px; box-shadow: 0 10px 24px var(--shadow);
+}
+.field { display: block; margin-bottom: 20px; }
+.field > span {
+  display: block; margin-bottom: 7px;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+}
+.field .req { color: var(--coral); }
+.field input,
+.field textarea {
+  width: 100%; font: inherit; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 14px;
+  padding: 13px 16px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field textarea { resize: vertical; min-height: 160px; line-height: 1.5; }
+.field input::placeholder,
+.field textarea::placeholder { color: color-mix(in srgb, var(--ink-soft) 60%, transparent); }
+.field input:focus,
+.field textarea:focus {
+  outline: none; border-color: var(--teal);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 22%, transparent);
+}
+/* Only flag a bad value once the browser has something to complain about —
+   :invalid alone would paint every required field red on first paint. */
+.field input:user-invalid,
+.field textarea:user-invalid { border-color: var(--coral); }
+.field .hint { display: block; margin-top: 6px; font-size: 0.85rem; color: var(--ink-soft); }
+
+.form-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.form-actions .cta-btn[disabled] { opacity: 0.65; cursor: progress; }
+.form-foot {
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line);
+  font-size: 0.88rem; color: var(--ink-soft);
+}
+
+.form-status {
+  display: none; margin-bottom: 22px; border-radius: 14px;
+  padding: 14px 18px; font-size: 0.95rem;
+  border: 1px solid var(--line);
+}
+.form-status[data-state="ok"],
+.form-status[data-state="error"] { display: block; }
+.form-status[data-state="ok"] {
+  background: color-mix(in srgb, var(--lime) 16%, transparent);
+  border-color: color-mix(in srgb, var(--lime) 45%, transparent);
+  color: var(--ink);
+}
+.form-status[data-state="error"] {
+  background: color-mix(in srgb, var(--coral) 14%, transparent);
+  border-color: color-mix(in srgb, var(--coral) 45%, transparent);
+  color: var(--ink);
+}
+
+/* Contact details list beside the form */
+.contact-list { list-style: none; margin: 22px 0 0; padding: 0; }
+.contact-list li { display: flex; gap: 14px; align-items: flex-start; margin-top: 20px; }
+.contact-list svg { width: 22px; height: 22px; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+.contact-list .label {
+  font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; display: block;
+}
+.contact-list a { text-decoration: none; }
+.contact-list a:hover { color: var(--teal); }
+.contact-list p { font-size: 0.94rem; margin-top: 2px; }
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 880px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 34px; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-art { order: -1; max-width: 320px; margin: 0 auto; }
   .versus-grid { grid-template-columns: 1fr; }
@@ -662,6 +738,13 @@ footer a:hover { color: var(--teal); }
   .photo-banner > .wrap { padding-bottom: 64px; }
 }
 @media (max-width: 560px) {
+  /* Brand + quote button + burger stop fitting on a phone, and the burger is
+     what gets pushed off the edge — so the button steps out of the top row
+     here. The drawer already carries its own copy of it. */
+  .nav-row > .cta-btn { display: none; }
+  .nav-row { padding: 14px 20px; }
+
+  .form-card { padding: 26px 22px; }
   .services-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
   .hero { padding-top: 52px; }

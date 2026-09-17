@@ -8,7 +8,17 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-dark-mode --screenshot=/tmp/final-dark.png --window-size=1440,620 --virtual-time-budget=4000 http://localhost:8777/index.html?f=2)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/final-wide.png --window-size=1920,700 --virtual-time-budget=4000 http://localhost:8777/index.html?f=3)",
       "Bash(sips -s format jpeg -s formatOptions 58 /tmp/mh.jpg --out modern-hero.jpg)",
-      "Bash(sips -s format jpeg -s formatOptions 62 /tmp/ms.jpg --out modern-hero-sm.jpg)"
+      "Bash(sips -s format jpeg -s formatOptions 62 /tmp/ms.jpg --out modern-hero-sm.jpg)",
+      "Bash(curl -s -i -X GET \"https://4iqlzkp9u6.execute-api.us-east-1.amazonaws.com/prod/contact\" -H \"Origin: https://poolboysnola.com\" --max-time 20)",
+      "Bash(curl -s -i -X OPTIONS \"https://4iqlzkp9u6.execute-api.us-east-1.amazonaws.com/prod/contact\" --max-time 20)",
+      "Bash(break)",
+      "Bash(node --check assets/contact.js)",
+      "Bash(node --check assets/site.js)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/c-mobile.png --window-size=420,1500 --virtual-time-budget=3500 http://localhost:8777/contact.html?m=1)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-dark-mode --screenshot=/tmp/c-dark.png --window-size=1200,1100 --virtual-time-budget=3500 http://localhost:8777/contact.html?m=2)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/hdr2-380.png --window-size=380,90 --virtual-time-budget=2500 http://localhost:8777/contact.html?x=1)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/c-mobile2.png --window-size=400,1400 --virtual-time-budget=3000 http://localhost:8777/contact.html?x=2)",
+      "Bash(git check-ignore *)"
     ]
   }
 }
