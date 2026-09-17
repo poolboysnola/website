@@ -30,7 +30,10 @@
       "Bash(sips -c 600 1440 --cropOffset 0 0 /tmp/pm-full.png --out /tmp/pm-seam.png)",
       "Bash(sips -g pixelWidth -g pixelHeight /tmp/pm-seam.png)",
       "Bash(awk '/pixel/{print $1,$2}')",
-      "Bash(sips -c 420 1440 --cropOffset 760 0 /tmp/pm-full.png --out /tmp/pm-seam2.png)"
+      "Bash(sips -c 420 1440 --cropOffset 760 0 /tmp/pm-full.png --out /tmp/pm-seam2.png)",
+      "Bash(sed 's/\\\\$$/[EOL]/')",
+      "Bash(awk 'NR>=84 && NR<=92 {printf \"%d:[%s]\\\\n\", NR, $0}' faq.html)",
+      "Bash(awk 'NR>=112 && NR<=118 {printf \"%d:[%s]\\\\n\", NR, $0}' faq.html)"
     ]
   }
 }
