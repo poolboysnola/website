@@ -26,7 +26,11 @@
       "Bash(sips -Z 1450 /tmp/pm-bottom-raw.png --out /tmp/pm-bottom.png)",
       "Bash(sips --version)",
       "Bash(sips --help)",
-      "Bash(python3 -c \"import PIL; print\\('PIL', PIL.__version__\\)\")"
+      "Bash(python3 -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(sips -c 600 1440 --cropOffset 0 0 /tmp/pm-full.png --out /tmp/pm-seam.png)",
+      "Bash(sips -g pixelWidth -g pixelHeight /tmp/pm-seam.png)",
+      "Bash(awk '/pixel/{print $1,$2}')",
+      "Bash(sips -c 420 1440 --cropOffset 760 0 /tmp/pm-full.png --out /tmp/pm-seam2.png)"
     ]
   }
 }

@@ -20,7 +20,7 @@ const SITE = {
   // --- Contact details: change these in one place -------------------------
   email: 'hello@poolboysnola.com',
   phone: { label: '(555) 010-POOL', href: 'tel:+15550107665' },
-  serviceAreaShort: 'Greater New Orleans & the Northshore',
+  serviceAreaShort: 'Greater New Orleans',
 
   // --- Top navigation ----------------------------------------------------
   // `section` = an anchor on the home page. `href` = a standalone page.
