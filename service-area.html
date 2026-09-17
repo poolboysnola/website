@@ -17,7 +17,7 @@
 <main id="main">
 
   <!-- PAGE HERO -->
-  <section class="page-hero">
+  <section class="page-hero has-photo photo-banner photo-jumping">
     <div class="wrap">
       <nav class="breadcrumb reveal" aria-label="Breadcrumb">
         <a href="h2know-pool-co.html">Home</a>
@@ -25,56 +25,30 @@
         <span aria-current="page">Service area</span>
       </nav>
 
-      <div class="split-grid" style="gap:40px; align-items:center;">
+      <div class="split-grid" style="gap:40px; align-items:center; --split-cols: 0.85fr 1.15fr;">
         <div class="reveal">
           <span class="kicker">Where we work</span>
           <h1>One crew, <span class="swash">one metro</span></h1>
           <p class="lede">We run weekly routes from Metarie to the bywater down through uptown, and lakeview . If you're inside Greater New Orleans, there's a good chance a truck already passes your street — and if you're just outside it, ask anyway.</p>
           <div class="hero-actions">
             <a href="contact.html" class="cta-btn">Check my address</a>
-            <a href="#faq" class="ghost-link">
-              Scheduling questions
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
+            
           </div>
         </div>
 
-        <!-- Schematic coverage illustration — not a real map, just a wayfinder -->
-        <div class="reveal">
-          <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematic diagram of the coverage area: the Northshore above Lake Pontchartrain, and Metairie, Kenner, New Orleans, St. Bernard and the Westbank below it.">
-            <rect x="0" y="0" width="520" height="400" rx="28" fill="var(--card)" stroke="var(--line)"/>
-
-            <!-- Lake Pontchartrain -->
-            <path d="M40 90c60-26 180-34 260-18 70 14 130 10 180-6v112c-60 16-130 12-200-2-80-16-180-10-240 14z" fill="var(--teal)" opacity="0.85"/>
-            <text x="330" y="152" text-anchor="middle" fill="#fff" opacity="0.9" style="font-family:var(--font-display);font-size:15px;font-weight:600">Lake Pontchartrain</text>
-
-            <!-- Causeway -->
-            <line x1="215" y1="78" x2="205" y2="196" stroke="var(--gold)" stroke-width="4" stroke-dasharray="8 7" stroke-linecap="round"/>
-
-            <!-- Mississippi River -->
-            <path d="M24 300c70 6 110-22 170-20 70 2 96 42 160 40 58-2 92-26 142-20" stroke="var(--teal-dark)" stroke-width="16" fill="none" stroke-linecap="round" opacity="0.6"/>
-            <text x="120" y="288" fill="var(--ink-soft)" style="font-family:var(--font-body);font-size:12px;font-weight:500">Mississippi River</text>
-
-            <!-- Northshore -->
-            <text x="60" y="42" fill="var(--ink)" style="font-family:var(--font-display);font-size:17px;font-weight:700">Northshore</text>
-            <text x="60" y="61" fill="var(--ink-soft)" style="font-family:var(--font-body);font-size:12px">Covington · Mandeville · Slidell</text>
-            <circle cx="46" cy="36" r="6" fill="var(--coral)"/>
-
-            <!-- East Bank -->
-            <text x="54" y="228" fill="var(--ink)" style="font-family:var(--font-display);font-size:15px;font-weight:700">Metairie &amp; Kenner</text>
-            <circle cx="42" cy="223" r="5" fill="var(--lime)"/>
-            <text x="250" y="238" fill="var(--ink)" style="font-family:var(--font-display);font-size:16px;font-weight:700">New Orleans</text>
-            <circle cx="238" cy="233" r="5" fill="var(--lime)"/>
-            <text x="404" y="252" fill="var(--ink)" style="font-family:var(--font-display);font-size:14px;font-weight:700">St. Bernard</text>
-            <circle cx="394" cy="247" r="5" fill="var(--lime)"/>
-
-            <!-- West Bank -->
-            <text x="150" y="356" fill="var(--ink)" style="font-family:var(--font-display);font-size:16px;font-weight:700">Westbank</text>
-            <text x="150" y="376" fill="var(--ink-soft)" style="font-family:var(--font-body);font-size:12px">Gretna · Marrero · Belle Chasse</text>
-            <circle cx="138" cy="350" r="6" fill="var(--coral)"/>
-
-            <text x="492" y="382" text-anchor="end" fill="var(--ink-soft)" opacity="0.7" style="font-family:var(--font-body);font-size:10px">Schematic — not to scale</text>
-          </svg>
+        <!-- Coverage map. Eager, not lazy: it is the hero image on this page. -->
+        <div class="reveal map-card">
+          <picture>
+            <source type="image/webp"
+                    srcset="images/pool-boys-map-800.webp 800w, images/pool-boys-map-1200.webp 1200w"
+                    sizes="(max-width: 880px) 92vw, 52vw">
+            <img src="images/pool-boys-map-1200.jpg" width="1200" height="800" decoding="async"
+                 alt="Map of the Pool Boys NOLA service area. The shaded route covers Lakeview, Lakefront, Gentilly, Mid-City, Carrollton, Broadmoor, Uptown, the Garden District, the Lower Garden District, the Marigny, and the Bywater, between Lake Pontchartrain and the Mississippi River.">
+          </picture>
+          <p class="drive-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            Shaded areas are standing routes — the edges are negotiable.
+          </p>
         </div>
       </div>
     </div>
@@ -113,13 +87,9 @@
             <span class="chip">Gentilly</span>
             <span class="chip">Marigny</span>
             <span class="chip">Bywater</span>
-            <span class="chip">Algiers Point</span>
-            <span class="chip">English Turn</span>
+           
           </div>
-          <div class="drive-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>
-            Narrow-access and courtyard pools welcome — we bring compact gear.
-          </div>
+          
         </div>
 
         

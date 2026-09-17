@@ -72,7 +72,9 @@
   <!-- SERVICE AREA TEASER -->
   <section>
     <div class="wrap">
-      <div class="split-grid">
+      <!-- The map is the point of this section, so it gets the wider column
+           here rather than the usual 1.15 / 0.85 split. -->
+      <div class="split-grid" style="--split-cols: 0.8fr 1.2fr;">
         <div>
           <span class="kicker">Where we work</span>
           <h2 style="font-size:clamp(1.9rem, 3.4vw, 2.6rem);">From Metarie to the Bywater.</h2>
@@ -85,24 +87,17 @@
             </a>
           </div>
         </div>
-        <div class="side-card">
-          <h3>Neighborhoods on the route</h3>
-          <div class="chip-row">
-            <span class="chip">Uptown</span>
-            <span class="chip">Garden District</span>
-            <span class="chip">Lower Garden District</span>
-            <span class="chip">Carrollton</span>
-            <span class="chip">Mid-City</span>
-            <span class="chip">Broadmoor</span>
-            <span class="chip">Lakeview</span>
-            <span class="chip">Lakefront</span>
-            <span class="chip">Gentilly</span>
-            <span class="chip">Marigny</span>
-            <span class="chip">Bywater</span>
-            <span class="chip">Algiers Point</span>
-            <span class="chip">English Turn</span>
-          </div>
-          </div>
+        <div class="map-card">
+          <a href="service-area.html">
+            <picture>
+              <source type="image/webp"
+                      srcset="images/pool-boys-map-800.webp 800w, images/pool-boys-map-1200.webp 1200w"
+                      sizes="(max-width: 880px) 92vw, 46vw">
+              <img src="images/pool-boys-map-1200.jpg" width="1200" height="800"
+                   loading="lazy" decoding="async"
+                   alt="Map of the Pool Boys NOLA service area, shaded from Lakeview and Lakefront through Mid-City and Gentilly down to Uptown, the Garden District, the Marigny, and the Bywater.">
+            </picture>
+          </a>
           <p class="drive-note">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
             Just outside the lines? Ask anyway — we make exceptions.

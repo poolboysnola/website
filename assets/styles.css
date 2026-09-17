@@ -546,9 +546,13 @@ footer a:hover { color: var(--teal); }
 .breadcrumb svg { width: 14px; height: 14px; opacity: 0.6; }
 .breadcrumb [aria-current="page"] { color: var(--ink); font-weight: 500; }
 
-/* Two-column story block: prose + supporting card */
+/* Two-column story block: prose + supporting card. Set --split-cols on the
+   element to change the ratio for one instance — going through a custom
+   property rather than an inline grid-template-columns keeps the responsive
+   collapse below working, which an inline style would override. */
 .split-grid {
-  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: start;
+  display: grid; gap: 48px; align-items: start;
+  grid-template-columns: var(--split-cols, 1.15fr 0.85fr);
 }
 .prose > * + * { margin-top: 18px; }
 .prose p { font-size: 1.04rem; }
@@ -655,6 +659,27 @@ footer a:hover { color: var(--teal); }
   display: flex; align-items: center; gap: 8px;
 }
 .drive-note svg { width: 16px; height: 16px; color: var(--coral); flex-shrink: 0; }
+
+/* Service-area map, framed like a .side-card so it sits in the split-grid the
+   same way the cards do. The image keeps its own 3:2 ratio — width/height on
+   the <img> reserve the space, so nothing jumps as it loads. */
+.map-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 24px;
+  padding: 14px 14px 4px; box-shadow: 0 10px 24px var(--shadow);
+}
+.map-card > a {
+  display: block; border-radius: 15px; overflow: hidden;
+  background: var(--bg-soft);
+}
+.map-card img {
+  width: 100%; height: auto; display: block; border-radius: 15px;
+  transition: transform 0.4s ease;
+}
+.map-card > a:hover img { transform: scale(1.03); }
+.map-card .drive-note { margin: 12px 4px 0; padding-bottom: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  .map-card img, .map-card > a:hover img { transition: none; transform: none; }
+}
 
 /* Coverage callout */
 .callout {

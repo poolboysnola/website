@@ -47,7 +47,14 @@
       "Bash(sips -Z 740 /tmp/idx4.png)",
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=430,5000 --screenshot=/tmp/idxm.png --virtual-time-budget=3500 \"file:///Users/figs/Documents/poolboysnola/index.html\")",
       "Bash(sips -c 600 430 --cropOffset 1450 0 /tmp/idxm.png --out /tmp/idxm2.png)",
-      "Bash(node --check assets/quote.js)"
+      "Bash(node --check assets/quote.js)",
+      "Bash(sips -g pixelWidth -g pixelHeight images/pool-boys-map.png)",
+      "Bash(sips --formats)",
+      "Bash(sips -s format webp -Z 1200 pool-boys-map.png --out pool-boys-map-1200.webp)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=1440,3400 --screenshot=/tmp/map.png --virtual-time-budget=5000 \"file:///Users/figs/Documents/poolboysnola/index.html\")",
+      "Bash(sips -c 900 1440 --cropOffset 1250 0 /tmp/map.png --out /tmp/map2.png)",
+      "Bash(sips -Z 760 /tmp/map2.png)",
+      "Bash(sips -c 780 1440 --cropOffset 1300 0 /tmp/map.png --out /tmp/map3.png)"
     ]
   }
 }
