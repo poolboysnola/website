@@ -4,8 +4,7 @@
    Loaded on every page. Any link or button carrying data-quote opens a modal
    that walks the visitor through six questions and then asks how to reach
    them. On the last step it posts to the same endpoint the contact form uses,
-   with every answer folded into the message body — so nothing changes server
-   side.
+   sending each question and its answer as a structured list.
 
    Those triggers keep href="contact.html", which is the no-JavaScript path:
    if this file never runs, the CTA still lands on the contact page.
@@ -355,22 +354,22 @@
 
   /* ---------- submit ---------------------------------------------------- */
 
-  function messageBody(data) {
-    const lines = answers().map(({ step, value }) => `${step.question}\n  ${value}`);
-    const notes = (data.get('notes') || '').trim();
+  // Builds the structured question/answer list the Lambda expects: the six
+  // quote questions first, then the contact details as their own Q&A pairs.
+  function buildAnswers(data) {
+    const list = STEPS.map(step => ({
+      question: step.question,
+      answer: data.get(step.name) || '—'
+    }));
 
-    return [
-      'Quote request from the website form.',
-      '',
-      lines.join('\n\n'),
-      '',
-      '— Contact —',
-      `Name: ${data.get('name').trim()}`,
-      `Email: ${data.get('email').trim()}`,
-      `Phone: ${(data.get('phone') || '').trim() || 'not given'}`,
-      `Neighborhood: ${(data.get('address') || '').trim() || 'not given'}`,
-      notes ? `\nNotes:\n${notes}` : ''
-    ].join('\n').trim();
+    list.push({ question: 'Name', answer: (data.get('name') || '').trim() });
+    list.push({ question: 'Phone', answer: (data.get('phone') || '').trim() || 'not given' });
+    list.push({ question: 'Neighborhood or street', answer: (data.get('address') || '').trim() || 'not given' });
+
+    const notes = (data.get('notes') || '').trim();
+    if (notes) list.push({ question: 'Anything else we should know?', answer: notes });
+
+    return list;
   }
 
   async function send() {
@@ -378,7 +377,7 @@
     const payload = {
       email: data.get('email').trim(),
       subject: `Quote request — ${data.get('service')} (${data.get('frequency')})`,
-      message: messageBody(data)
+      answers: buildAnswers(data)
     };
 
     nextBtn.disabled = true;
