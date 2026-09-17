@@ -18,7 +18,12 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-dark-mode --screenshot=/tmp/c-dark.png --window-size=1200,1100 --virtual-time-budget=3500 http://localhost:8777/contact.html?m=2)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/hdr2-380.png --window-size=380,90 --virtual-time-budget=2500 http://localhost:8777/contact.html?x=1)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/c-mobile2.png --window-size=400,1400 --virtual-time-budget=3000 http://localhost:8777/contact.html?x=2)",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(python3 -c ' *)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --screenshot=/tmp/pm-1.png --window-size=1280,2000 --virtual-time-budget=3500 http://localhost:8777/pool-maintenance.html?p=1)",
+      "Bash(sips -c 2600 1280 --out /tmp/pm-bottom-raw.png pm-full.png)",
+      "Bash(sips -g pixelHeight -g pixelWidth /tmp/pm-bottom-raw.png)",
+      "Bash(sips -Z 1450 /tmp/pm-bottom-raw.png --out /tmp/pm-bottom.png)"
     ]
   }
 }
