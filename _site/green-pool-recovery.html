@@ -1,6 +1,3 @@
----
-page_id: green-pool-recovery
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +10,55 @@ page_id: green-pool-recovery
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body data-page="{{ page.page_id }}">
+<body data-page="green-pool-recovery">
 
-{% include header.html %}
+<!-- ==========================================================================
+     Pool Boys NOLA — site header
+     --------------------------------------------------------------------------
+     Included by every page, so the nav ships in the served HTML rather than
+     being written by JavaScript after load. That is the point of the
+     include: crawlers see the internal links without having to run a script.
+
+     Links and labels come from _data/site.yml. A page marks itself current by
+     setting `page_id:` in its front matter, which is matched against each
+     link's `id` below.
+     ========================================================================== --><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-row">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="24" cy="24" r="23" fill="var(--teal)"/>
+    <path d="M12 30c2.5 2 4.5 2 7 0s4.5-2 7 0 4.5 2 7 0 4.5-2 7 0" stroke="var(--gold)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path d="M12 22c2.5 2 4.5 2 7 0s4.5-2 7 0 4.5 2 7 0 4.5-2 7 0" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <circle cx="24" cy="13" r="3.4" fill="var(--coral)"/>
+  </svg>
+
+      <span class="brand-name">Pool Boys NOLA</span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="pool-maintenance.html">Pool maintenance</a>
+      <a href="green-pool-recovery.html" aria-current="page">Green pool recovery</a>
+      <a href="saltwater-care.html">Saltwater care</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="contact.html" class="cta-btn" data-quote>Get a free quote</a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="pool-maintenance.html">Pool maintenance</a>
+    <a href="green-pool-recovery.html" aria-current="page">Green pool recovery</a>
+    <a href="saltwater-care.html">Saltwater care</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="cta-btn" data-quote>Get a free quote</a>
+  </nav>
+</header>
+
 
 <main id="main">
 
@@ -226,7 +269,61 @@ page_id: green-pool-recovery
 
 </main>
 
-{% include footer.html %}
+<!-- ==========================================================================
+     Pool Boys NOLA — site footer
+     --------------------------------------------------------------------------
+     Included by every page. Link columns come from _data/site.yml; the
+     copyright year is the build year, so it updates whenever the site is
+     rebuilt rather than on the visitor's clock.
+     ========================================================================== --><footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="24" cy="24" r="23" fill="var(--teal)"/>
+    <path d="M12 30c2.5 2 4.5 2 7 0s4.5-2 7 0 4.5 2 7 0 4.5-2 7 0" stroke="var(--gold)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <path d="M12 22c2.5 2 4.5 2 7 0s4.5-2 7 0 4.5 2 7 0 4.5-2 7 0" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <circle cx="24" cy="13" r="3.4" fill="var(--coral)"/>
+  </svg>
+
+          <span class="brand-name">Pool Boys NOLA</span>
+        </a>
+        <p>Powered by chemistry — and a genuine love of clear, blue water. Salt or chlorine, we speak your pool’s language.</p>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:hello@poolboysnola.com">hello@poolboysnola.com</a></li>
+          <li><a href="tel:+15550107665">(555) 010-POOL</a></li>
+          <li><a href="service-area.html">Greater New Orleans</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="pool-maintenance.html">Pool maintenance</a></li>
+          <li><a href="green-pool-recovery.html" aria-current="page">Green pool recovery</a></li>
+          <li><a href="saltwater-care.html">Saltwater care</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="service-area.html">Service area</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Pool Boys NOLA. All rights reserved.</span>
+      <span>Made for pool people, by pool geeks.</span>
+    </div>
+  </div>
+</footer>
+
 
 <script src="assets/site.js" defer></script>
 <script src="assets/quote.js" defer></script>

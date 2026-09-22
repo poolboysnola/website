@@ -1,0 +1,37 @@
+# ==========================================================================
+# Pool Boys NOLA — Jekyll configuration
+# --------------------------------------------------------------------------
+# GitHub Pages builds this repo with Jekyll on every push. Its job here is
+# small: stitch _includes/header.html and _includes/footer.html into each
+# page so the nav and footer links are in the served HTML, which is what
+# search engines index most reliably.
+#
+# Page URLs are unchanged — about.html is still /about.html — so no existing
+# link or ranking moves.
+#
+# Note: changes to THIS file need a rebuild to take effect. Editing
+# _data/site.yml or the includes does not, if you are running `jekyll serve`
+# locally.
+# ==========================================================================
+
+title: Pool Boys NOLA
+description: >-
+  Weekly pool cleaning, maintenance, water chemistry, and saltwater care
+  throughout Greater New Orleans.
+url: https://poolboysnola.com
+
+# Keep the source files out of the built site.
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .DS_Store
+  - .claude
+
+# Pages keep their own <head>, so no layout is applied by default.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: null

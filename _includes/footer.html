@@ -1,0 +1,45 @@
+<!-- ==========================================================================
+     Pool Boys NOLA — site footer
+     --------------------------------------------------------------------------
+     Included by every page. Link columns come from _data/site.yml; the
+     copyright year is the build year, so it updates whenever the site is
+     rebuilt rather than on the visitor's clock.
+     ========================================================================== -->
+{%- assign home_href = site.data.site.home -%}
+{%- if page.page_id == 'home' -%}{%- assign home_href = '#top' -%}{%- endif -%}
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="{{ home_href }}" class="brand">
+          {% include brand-mark.html %}
+          <span class="brand-name">{{ site.data.site.name }}</span>
+        </a>
+        <p>{{ site.data.site.tagline }}</p>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:{{ site.data.site.email }}">{{ site.data.site.email }}</a></li>
+          <li><a href="{{ site.data.site.phone_href }}">{{ site.data.site.phone_label }}</a></li>
+          <li><a href="service-area.html">{{ site.data.site.service_area_short }}</a></li>
+        </ul>
+      </div>
+      {%- for col in site.data.site.footer_columns %}
+      <div>
+        <h4>{{ col.title }}</h4>
+        <ul>
+          {%- for link in col.links %}
+          <li><a href="{{ link.href }}"{% if link.id == page.page_id %} aria-current="page"{% endif %}>{{ link.label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endfor %}
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: "%Y" }} {{ site.data.site.name }}. All rights reserved.</span>
+      <span>Made for pool people, by pool geeks.</span>
+    </div>
+  </div>
+</footer>

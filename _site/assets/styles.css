@@ -1,0 +1,1111 @@
+/* ==========================================================================
+   Pool Boys NOLA — shared stylesheet
+   Loaded by every page. Page-specific blocks are grouped at the bottom.
+   ========================================================================== */
+
+:root {
+  --bg: #FBF3E4;
+  --bg-soft: #F3ECD8;
+  --ink: #123330;
+  --ink-soft: #3E5A54;
+  --card: #FFFFFF;
+  --teal: #1B8A8F;
+  --teal-dark: #0F5F63;
+  --coral: #FF6B54;
+  --gold: #FFC64B;
+  --lime: #94BC2A;
+  --line: rgba(18, 51, 48, 0.12);
+  --shadow: rgba(18, 51, 48, 0.10);
+  /* One dial for every card, panel and dialog corner on the site. */
+  --radius-card: 12px;
+  --font-display: 'Fredoka', ui-rounded, 'Segoe UI Rounded', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E2724;
+    --bg-soft: #123330;
+    --ink: #F3ECD8;
+    --ink-soft: #B9CFC9;
+    --card: #163B37;
+    --line: rgba(243, 236, 216, 0.14);
+    --shadow: rgba(0, 0, 0, 0.35);
+    --teal: #3AA7AB;
+    --teal-dark: #6FC6C9;
+    --coral: #FF8871;
+    --gold: #FFD268;
+    --lime: #A9D446;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E2724;
+  --bg-soft: #123330;
+  --ink: #F3ECD8;
+  --ink-soft: #B9CFC9;
+  --card: #163B37;
+  --line: rgba(243, 236, 216, 0.14);
+  --shadow: rgba(0, 0, 0, 0.35);
+  --teal: #3AA7AB;
+  --teal-dark: #6FC6C9;
+  --coral: #FF8871;
+  --gold: #FFD268;
+  --lime: #A9D446;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+p { margin: 0; color: var(--ink-soft); }
+a { color: inherit; }
+img, svg { max-width: 100%; display: block; }
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.wrap-narrow {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap;
+}
+:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+
+/* Skip link — first focusable element on every page */
+.skip-link {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  background: var(--coral); color: #fff; text-decoration: none;
+  padding: 10px 18px; border-radius: 0 0 12px 12px; font-weight: 600;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ---------- NAV ---------- */
+header.site-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 28px; max-width: 1120px; margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand-mark { width: 40px; height: 40px; flex-shrink: 0; }
+.brand-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; }
+/* Fluid gap: six links, the brand and the CTA only just fit the 1120px row,
+   so the spacing gives way as the viewport narrows instead of the last link
+   colliding with the button. */
+nav.links { display: flex; align-items: center; gap: clamp(14px, 1.5vw, 26px); }
+nav.links a {
+  text-decoration: none; font-weight: 500; font-size: 0.98rem; color: var(--ink-soft);
+  transition: color 0.15s ease;
+}
+nav.links a:hover { color: var(--teal); }
+nav.links a[aria-current="page"] {
+  color: var(--teal); border-bottom: 2px solid var(--gold); padding-bottom: 2px;
+}
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--coral); color: #fff !important;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.98rem;
+  padding: 12px 22px; border-radius: 100px; text-decoration: none;
+  box-shadow: 0 6px 0 0 color-mix(in srgb, var(--coral) 65%, black);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  border: none; cursor: pointer;
+}
+.cta-btn:hover { transform: translateY(-2px); }
+.cta-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 0 color-mix(in srgb, var(--coral) 65%, black); }
+.cta-btn.teal {
+  background: var(--teal);
+  box-shadow: 0 6px 0 0 color-mix(in srgb, var(--teal) 65%, black);
+}
+.cta-btn.teal:active { box-shadow: 0 2px 0 0 color-mix(in srgb, var(--teal) 65%, black); }
+.menu-toggle {
+  display: none; background: none; border: none; cursor: pointer; padding: 6px;
+}
+.menu-toggle svg { width: 26px; height: 26px; color: var(--ink); }
+
+/* Mobile drawer — rendered by assets/site.js, hidden until toggled */
+.mobile-nav {
+  display: none; flex-direction: column;
+  padding: 4px 28px 20px; border-top: 1px solid var(--line);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  text-decoration: none; padding: 14px 0; font-weight: 500;
+  color: var(--ink-soft); border-bottom: 1px solid var(--line);
+}
+.mobile-nav a[aria-current="page"] { color: var(--teal); }
+.mobile-nav .cta-btn {
+  margin-top: 18px; align-self: flex-start; border-bottom: none;
+}
+/* Five nav links + brand + CTA stop fitting comfortably below ~1080px, so the
+   nav collapses to the drawer earlier than the rest of the layout reflows. */
+@media (max-width: 1080px) {
+  nav.links { display: none; }
+  .menu-toggle { display: inline-flex; }
+}
+@media (min-width: 1081px) {
+  .mobile-nav { display: none !important; }
+}
+
+/* ---------- HERO (home) ---------- */
+.hero {
+  position: relative;
+  padding: 74px 0 40px;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center;
+}
+.eyebrow-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--card); border: 1px solid var(--line);
+  padding: 8px 16px 8px 10px; border-radius: 100px;
+  font-size: 0.88rem; font-weight: 500; color: var(--teal-dark);
+  margin-bottom: 22px;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 5vw, 3.9rem);
+  color: var(--ink);
+}
+.hero h1 .swash { color: var(--teal); }
+.hero p.lede {
+  margin-top: 22px; font-size: 1.2rem; max-width: 46ch; color: var(--ink-soft);
+}
+.hero-actions { display: flex; gap: 16px; margin-top: 34px; flex-wrap: wrap; align-items: center; }
+.ghost-link {
+  text-decoration: none; font-weight: 600; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 8px;
+  border-bottom: 2px solid var(--gold); padding-bottom: 3px;
+}
+.hero-art { position: relative; }
+.hero-art svg { width: 100%; height: auto; }
+.hero-badges {
+  display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap;
+}
+.hero-badge {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 12px 16px; font-size: 0.88rem; font-weight: 500; color: var(--ink-soft);
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 10px var(--shadow);
+}
+.hero-badge svg { width: 18px; height: 18px; color: var(--teal); flex-shrink: 0; }
+
+.wave-divider { display: block; width: 100%; height: auto; margin-top: -2px; }
+
+/* ---------- SECTIONS ---------- */
+section { padding: 84px 0; }
+.section-band { background: var(--bg-soft); }
+/* A stronger band than .section-band for a section that needs to stand apart
+   from the cream ones on either side. Mixed from the brand teal rather than
+   hard-coded, so it follows the theme into dark mode. */
+.section-tint {
+  background: color-mix(in srgb, var(--teal) 9%, var(--bg));
+  border-top: 1px solid color-mix(in srgb, var(--teal) 16%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--teal) 16%, transparent);
+}
+.kicker {
+  font-family: var(--font-display); font-weight: 600; color: var(--coral);
+  font-size: 1rem; margin-bottom: 10px; display: block;
+}
+.section-head { max-width: 640px; margin-bottom: 52px; }
+.section-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+.section-head p { margin-top: 16px; font-size: 1.08rem; }
+
+.section-head2 {  margin-bottom: 52px; }
+.section-head2 h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+.section-head2 p { margin-top: 16px; font-size: 1.08rem; }
+
+
+/* Salt vs Chlorine */
+.versus-grid {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; align-items: stretch;
+}
+.versus-vs {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+  color: var(--gold); width: 56px;
+}
+.versus-card {
+  background: var(--card); border-radius: var(--radius-card); padding: 36px 32px;
+  border: 1px solid var(--line); box-shadow: 0 10px 24px var(--shadow);
+}
+.versus-card .tag {
+  display: inline-block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.versus-card.salt .tag { background: color-mix(in srgb, var(--teal) 18%, transparent); color: var(--teal-dark); }
+.versus-card.chlorine .tag { background: color-mix(in srgb, var(--gold) 28%, transparent); color: #8a5a00; }
+:root[data-theme="dark"] .versus-card.chlorine .tag { color: #4a3300; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .versus-card.chlorine .tag { color: #4a3300; }
+}
+.versus-card h3 { font-size: 1.5rem; margin-bottom: 14px; }
+.versus-card ul { margin: 0; padding: 0; list-style: none; }
+.versus-card li {
+  display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line);
+  font-size: 0.98rem; color: var(--ink-soft);
+}
+.versus-card li:first-of-type { border-top: none; }
+.versus-card li svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; color: var(--coral); }
+/* Trade-offs sit in the same list as the upsides, so they get a muted mark
+   rather than the coral tick — the shape alone is too easy to skim past. */
+.versus-card li.tradeoff { color: color-mix(in srgb, var(--ink-soft) 88%, transparent); }
+.versus-card li.tradeoff svg { color: color-mix(in srgb, var(--ink-soft) 62%, transparent); }
+
+/* Services */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.service-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 30px 26px; box-shadow: 0 8px 20px var(--shadow);
+}
+/* 80px circles here rather than the 52px rounded squares used elsewhere, so
+   an icon badge and a photo badge are interchangeable in this row — swap one
+   card to a photo and the three headings still line up. */
+.service-card .icon-badge {
+  width: 80px; height: 80px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.service-card .icon-badge svg { width: 34px; height: 34px; color: #fff; }
+/* A service card that is itself a link to the page it describes: the whole
+   card is the hit area, and the row at the bottom is the affordance saying
+   so. Cards in a row stay the same height, with that row pinned to the
+   bottom edge however long the description runs. */
+a.service-card {
+  display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+a.service-card p { margin-bottom: 20px; }
+a.service-card .more {
+  margin-top: auto; display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.94rem;
+  color: var(--teal);
+}
+a.service-card .more svg { width: 15px; height: 15px; transition: transform 0.18s ease; }
+a.service-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--teal) 45%, transparent);
+  box-shadow: 0 14px 30px var(--shadow);
+}
+a.service-card:hover .more svg { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  a.service-card, a.service-card .more svg { transition: none; }
+  a.service-card:hover { transform: none; }
+  a.service-card:hover .more svg { transform: none; }
+}
+.service-card h3 { font-size: 1.18rem; margin-bottom: 10px; }
+.service-card p { font-size: 0.98rem; }
+
+/* How it works */
+.steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+  position: relative;
+}
+.step { position: relative; padding-left: 4px; }
+.step-num {
+  font-family: var(--font-display); font-size: 2.6rem; font-weight: 700;
+  color: var(--teal); opacity: 0.35; line-height: 1; margin-bottom: 14px;
+}
+.step h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.step p { font-size: 0.98rem; }
+
+/* Testimonial / trust strip */
+.trust-strip {
+  display: flex; gap: 40px; flex-wrap: wrap; justify-content: space-between;
+  align-items: center;
+}
+.trust-item { display: flex; align-items: center; gap: 12px; max-width: 300px; }
+.trust-item svg { width: 30px; height: 30px; color: var(--coral); flex-shrink: 0; }
+.trust-item span { font-size: 0.96rem; font-weight: 500; color: var(--ink); }
+
+/* CTA banner */
+.cta-banner {
+  background: var(--teal); border-radius: 16px; padding: 60px 50px;
+  display: flex; align-items: center; justify-content: space-between; gap: 30px;
+  flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-banner > div { position: relative; z-index: 1; }
+.cta-banner > .cta-btn { position: relative; z-index: 1; }
+.cta-banner h2 { color: #fff; font-size: clamp(1.7rem, 3vw, 2.3rem); max-width: 480px; }
+.cta-banner p { color: color-mix(in srgb, #fff 82%, transparent); margin-top: 10px; font-size: 1.05rem; }
+.cta-banner .cta-btn { background: var(--gold); color: var(--ink) !important; box-shadow: 0 6px 0 0 color-mix(in srgb, var(--gold) 55%, black); }
+.cta-decor { position: absolute; opacity: 0.18; }
+
+/* Footer */
+footer { padding: 56px 0 40px; border-top: 1px solid var(--line); }
+.footer-grid {
+  display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 40px;
+}
+footer h4 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 16px; }
+footer ul { list-style: none; margin: 0; padding: 0; }
+footer li { margin-bottom: 10px; }
+footer a { text-decoration: none; color: var(--ink-soft); font-size: 0.96rem; }
+footer a:hover { color: var(--teal); }
+.footer-brand p { margin-top: 14px; max-width: 32ch; font-size: 0.96rem; }
+.footer-bottom {
+  margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-size: 0.86rem; color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   INTERIOR PAGES (about, service area)
+   ========================================================================== */
+
+.page-hero {
+  position: relative; overflow: hidden;
+  padding: 60px 0 0;
+}
+/* Bottom spacing lives on the inner wrap so the wave divider stays flush
+   against the next section instead of sitting above a strip of --bg. */
+.page-hero > .wrap { padding-bottom: 56px; }
+.page-hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.3rem); }
+.page-hero h1 .swash { color: var(--teal); }
+.page-hero p.lede {
+  margin-top: 20px; font-size: 1.16rem; max-width: 56ch;
+}
+.page-hero .hero-actions { margin-top: 30px; }
+
+/* ---------- PHOTO HERO (reusable component) ------------------------------
+   A page hero with a photo behind the copy, scrimmed so the text stays
+   readable. The wave divider still goes inside the <section>, so the photo
+   ends on the wave exactly like a plain .page-hero does.
+
+   Usage — add .has-photo plus one image variant class:
+
+     <section class="page-hero has-photo photo-infinity">
+       <div class="wrap">
+         <nav class="breadcrumb">...</nav>
+         <div class="reveal hero-copy"> ...headline, lede, buttons... </div>
+       </div>
+       <svg class="wave-divider">...</svg>
+     </section>
+
+   To add a page, define a new .photo-* variant in the IMAGE VARIANTS block
+   below and put that class on the section. The url()s deliberately live in
+   this file rather than in a page's style attribute: Chrome resolves a
+   url() inside a custom property against the stylesheet that substitutes
+   it, not the page, so page-supplied paths silently 404. Keeping them here
+   makes "../images/..." correct and behave the same over file:// too.
+
+   Optional knobs, all with sane defaults:
+     --hero-photo-sm        image for stacked/narrow layout (default: same)
+     --hero-photo-size      default: cover
+     --hero-photo-position  default: right center
+     --hero-copy-max        width of the text column (default: 520px)
+   The scrim itself is theme-aware: it is built from var(--bg), so it fades
+   to cream in the light theme and to deep teal in the dark one.           */
+.page-hero.has-photo {
+  --photo-tint: transparent;
+  --hero-photo-sm: var(--hero-photo);
+  --hero-photo-size: cover;
+  --hero-photo-position: right center;
+  --hero-copy-max: 520px;
+  background-image:
+    linear-gradient(94deg,
+      var(--bg) 0%,
+      var(--bg) 48%,
+      color-mix(in srgb, var(--bg) 76%, transparent) 60%,
+      color-mix(in srgb, var(--bg) 26%, transparent) 74%,
+      transparent 87%),
+    linear-gradient(var(--photo-tint), var(--photo-tint)),
+    var(--hero-photo);
+  background-size: cover, cover, var(--hero-photo-size);
+  background-position: center, center, var(--hero-photo-position);
+  background-repeat: no-repeat;
+}
+.page-hero.has-photo > .wrap { padding-bottom: 76px; }
+.page-hero.has-photo .hero-copy { max-width: var(--hero-copy-max); }
+
+/* --- IMAGE VARIANTS — one per page. Add new ones here. --- */
+.has-photo.photo-palm {
+  --hero-photo: url("../images/about-hero-palm.jpg");
+  --hero-photo-sm: url("../images/about-hero-palm-900.jpg");
+}
+/* Portrait source, so the stacked layout gets a landscape band crop —
+   otherwise the mobile band would only show the bottom of the frame. */
+.has-photo.photo-infinity {
+  --hero-photo: url("../images/infinity-pool.jpg");
+  --hero-photo-sm: url("../images/infinity-hero-sm.jpg");
+}
+/* Wide 16:9 source. Used as a full-bleed banner (see .photo-banner), so the
+   crop is purely vertical — the position pushes the frame down past the blank
+   upper wall to the water, the lit coping and the planting. */
+.has-photo.photo-modern {
+  --hero-photo: url("../images/modern-hero.jpg");
+  --hero-photo-sm: url("../images/modern-hero-sm.jpg");
+  --hero-photo-position: center 66%;
+}
+/* The five below are all pre-cut to 16:9 (1800w desktop / 900w stacked), so
+   like .photo-modern the crop left to do here is purely vertical — a hero band
+   is far wider than 16:9, so only about the middle 60% of each frame is ever on
+   screen. Each position below picks which 60%. Four of the five sources are
+   portrait, so the band was already chosen once when the -hero files were cut;
+   these percentages only nudge inside that band. */
+
+/* Loungers sit high in the frame, the lap pool crosses the middle. Slightly
+   past centre drops the empty paving at the top and keeps water in shot. */
+.has-photo.photo-cuntry-club {
+  --hero-photo: url("../images/cuntry-club-hero.jpg");
+  --hero-photo-sm: url("../images/cuntry-club-hero-sm.jpg");
+  --hero-photo-position: center 56%;
+}
+/* The only landscape source, and the only one with people in it. Wants
+   .photo-banner: the subject is dead centre, so the side-photo scrim cuts the
+   jumper in half and leaves a stray limb at the fade. Held right at the top of
+   the frame because a hero band is shallower than the leap is tall — anything
+   past ~12% decapitates him, which costs more than clipping the float. */
+.has-photo.photo-jumping {
+  --hero-photo: url("../images/jumping-hero.jpg");
+  --hero-photo-sm: url("../images/jumping-hero-sm.jpg");
+  --hero-photo-position: center 8%;
+}
+/* Tall pavilion with the waterline low in the frame. Weighted well down so the
+   band holds the pool edge and the planting rather than the roofline. */
+.has-photo.photo-magnolia {
+  --hero-photo: url("../images/magnolia-hero.jpg");
+  --hero-photo-sm: url("../images/magnolia-hero-sm.jpg");
+  --hero-photo-position: center 68%;
+}
+/* Dusk shot: pink sky up top, flamingo float dead centre with its reflection
+   below it. Centre keeps float and reflection together — that pairing is the
+   whole picture, so this is the one variant best left near 50%. */
+.has-photo.photo-paradise-park {
+  --hero-photo: url("../images/paradise-park-hero.jpg");
+  --hero-photo-sm: url("../images/paradise-park-hero-sm.jpg");
+  --hero-photo-position: center 52%;
+}
+/* Tree line over a long rectangular pool. Down past centre so the band trades
+   sky for water while keeping the trunks as a backdrop. */
+.has-photo.photo-trees {
+  --hero-photo: url("../images/trees-hero.jpg");
+  --hero-photo-sm: url("../images/trees-hero-sm.jpg");
+  --hero-photo-position: center 62%;
+}
+
+/* --- FULL-BLEED BANNER MODIFIER ------------------------------------------
+   Add .photo-banner next to .has-photo when the photo should read as a
+   banner instead of a side image: no cream scrim eating the left half, the
+   frame runs edge to edge and the copy lies across the full width on top of
+   it. An even wash replaces the directional scrim — the photo stays fully
+   visible, just knocked back far enough to carry white text over the bright
+   white wall in it. Copy colours are fixed (not theme vars) because they sit
+   on the photo, not on --bg, in both themes.                              */
+.page-hero.has-photo.photo-banner {
+  --hero-copy-max: none;
+  --photo-wash: rgba(7, 26, 24, 0.56);
+  background-image:
+    linear-gradient(var(--photo-wash), var(--photo-wash)),
+    var(--hero-photo);
+  background-size: cover, var(--hero-photo-size);
+  background-position: center, var(--hero-photo-position);
+  padding-top: 118px;
+}
+.photo-banner > .wrap { padding-bottom: 140px; }
+.photo-banner h1 {
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+}
+.photo-banner h1 .swash { color: var(--gold); }
+.photo-banner p.lede {
+  color: rgba(255, 255, 255, 0.94);
+  max-width: none;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+.photo-banner .ghost-link { color: #fff; }
+
+/* The photo is bright, so knock it back when the dark theme is active. */
+:root[data-theme="dark"] .page-hero.has-photo {
+  --photo-tint: color-mix(in srgb, var(--bg) 46%, transparent);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-hero.has-photo {
+    --photo-tint: color-mix(in srgb, var(--bg) 46%, transparent);
+  }
+}
+
+/* ---------- PHOTO STRIP (reusable component) -----------------------------
+   A full-bleed photo band for breaking up a long page. It borrows the same
+   image variants as the photo hero, so the markup is .has-photo plus one
+   .photo-* class — and no .page-hero, which is what keeps the hero's scrim
+   and padding out of it:
+
+     <section class="photo-strip has-photo photo-trees scroll-reveal"
+              role="img" aria-label="describe the photo"></section>
+
+   Empty on purpose: it carries no copy, so it is announced as an image
+   rather than as a blank landmark. Add .scroll-reveal to have it fade up as
+   it scrolls into view (see assets/site.js).                              */
+.photo-strip {
+  padding: 0;
+  height: clamp(240px, 34vw, 420px);
+  background-image: var(--hero-photo);
+  background-size: cover;
+  background-position: var(--hero-photo-position, center);
+  background-repeat: no-repeat;
+}
+
+/* ---------- SCROLL REVEAL ------------------------------------------------
+   site.js adds .js-reveal to <html> and then .is-visible to each
+   .scroll-reveal element as it enters the viewport. The hidden state hangs
+   off .js-reveal so that without JavaScript — or with reduced motion asked
+   for — the content is simply there.                                      */
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal .scroll-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .js-reveal .scroll-reveal.is-visible { opacity: 1; transform: none; }
+}
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 20px;
+}
+.breadcrumb a { text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb svg { width: 14px; height: 14px; opacity: 0.6; }
+.breadcrumb [aria-current="page"] { color: var(--ink); font-weight: 500; }
+
+/* Two-column story block: prose + supporting card. Set --split-cols on the
+   element to change the ratio for one instance — going through a custom
+   property rather than an inline grid-template-columns keeps the responsive
+   collapse below working, which an inline style would override. */
+.split-grid {
+  display: grid; gap: 48px; align-items: start;
+  grid-template-columns: var(--split-cols, 1.15fr 0.85fr);
+}
+.prose > * + * { margin-top: 18px; }
+.prose p { font-size: 1.04rem; }
+.prose h3 { font-size: 1.35rem; margin-top: 34px; }
+.prose strong { color: var(--ink); font-weight: 600; }
+
+.side-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 30px 28px; box-shadow: 0 10px 24px var(--shadow);
+}
+.side-card h3 { font-size: 1.15rem; margin-bottom: 16px; }
+.side-card dl { margin: 0; }
+.side-card dt {
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
+  font-weight: 600; color: var(--teal); margin-top: 18px;
+}
+.side-card dt:first-of-type { margin-top: 0; }
+.side-card dd { margin: 4px 0 0; color: var(--ink-soft); font-size: 0.98rem; }
+
+/* Stat row */
+.stat-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.stat {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 26px 24px; box-shadow: 0 8px 20px var(--shadow);
+}
+.stat .stat-num {
+  font-family: var(--font-display); font-weight: 700; font-size: 2.1rem;
+  color: var(--teal); line-height: 1;
+}
+.stat .stat-label { margin-top: 10px; font-size: 0.94rem; }
+
+/* Values / promises */
+.values-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.value-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 30px 26px; box-shadow: 0 8px 20px var(--shadow);
+}
+.value-card .icon-badge {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+.value-card .icon-badge svg { width: 24px; height: 24px; }
+.value-card h3 { font-size: 1.12rem; margin-bottom: 10px; }
+.value-card p { font-size: 0.97rem; }
+
+/* An icon badge carrying a photo instead of a line icon: round, and bigger,
+   because a photograph needs more room than an icon to read at all. Swap the
+   <svg> for an <img> in the markup and this takes over — no extra class.
+   The card-scoped selectors are spelled out because .service-card
+   .icon-badge and .value-card .icon-badge are more specific than a bare
+   .icon-badge rule and would otherwise keep winning on size. */
+.icon-badge:has(img),
+.service-card .icon-badge:has(img),
+.value-card .icon-badge:has(img) {
+  width: 80px; height: 80px; border-radius: 50%;
+  overflow: hidden; padding: 0;
+  background: var(--bg-soft);
+}
+.icon-badge img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* Timeline */
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before {
+  content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px;
+  width: 2px; background: var(--line);
+}
+.timeline li { position: relative; padding: 0 0 30px 34px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content: ""; position: absolute; left: 0; top: 7px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--gold); border: 3px solid var(--bg);
+}
+.timeline h3 { font-size: 1.08rem; margin-bottom: 6px; }
+.timeline p { font-size: 0.97rem; }
+.timeline .when {
+  font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
+  color: var(--coral); display: block; margin-bottom: 4px;
+}
+/* The dots punch a ring out of whatever sits behind them, so inside a card the
+   ring has to be the card colour rather than the page background. */
+.side-card .timeline li::before { border-color: var(--card); }
+
+/* Service-area cards */
+.area-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+}
+.area-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 28px 26px; box-shadow: 0 8px 20px var(--shadow);
+  display: flex; flex-direction: column;
+}
+.area-card .area-head {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 6px;
+}
+.area-card .area-head svg { width: 22px; height: 22px; color: var(--teal); flex-shrink: 0; }
+.area-card h3 { font-size: 1.18rem; }
+.area-card > p { font-size: 0.95rem; margin-bottom: 18px; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Chips sit right under the description; the note is what gets pinned to the
+   card's bottom edge, so notes line up across a row of uneven cards. */
+.area-card .drive-note { margin-top: auto; padding-top: 18px; }
+.chip {
+  font-size: 0.85rem; font-weight: 500; color: var(--ink-soft);
+  background: var(--bg-soft); border: 1px solid var(--line);
+  padding: 5px 12px; border-radius: 100px;
+}
+:root[data-theme="dark"] .chip { background: color-mix(in srgb, var(--teal) 14%, transparent); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .chip { background: color-mix(in srgb, var(--teal) 14%, transparent); }
+}
+.drive-note {
+  margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line);
+  font-size: 0.88rem; color: var(--ink-soft);
+  display: flex; align-items: center; gap: 8px;
+}
+.drive-note svg { width: 16px; height: 16px; color: var(--coral); flex-shrink: 0; }
+
+/* Service-area map, framed like a .side-card so it sits in the split-grid the
+   same way the cards do. The image keeps its own 3:2 ratio — width/height on
+   the <img> reserve the space, so nothing jumps as it loads. */
+.map-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 14px 14px 4px; box-shadow: 0 10px 24px var(--shadow);
+}
+.map-card > a {
+  display: block; border-radius: 6px; overflow: hidden;
+  background: var(--bg-soft);
+}
+.map-card img {
+  width: 100%; height: auto; display: block; border-radius: 6px;
+  transition: transform 0.4s ease;
+}
+.map-card > a:hover img { transform: scale(1.03); }
+.map-card .drive-note { margin: 12px 4px 0; padding-bottom: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  .map-card img, .map-card > a:hover img { transition: none; transform: none; }
+}
+
+/* Coverage callout */
+.callout {
+  background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--gold);
+  border-radius: var(--radius-card); padding: 26px 28px;
+  display: flex; gap: 18px; align-items: flex-start;
+}
+.callout svg { width: 26px; height: 26px; color: var(--gold); flex-shrink: 0; }
+.callout h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.callout p { font-size: 0.98rem; }
+
+/* FAQ */
+.faq { max-width: 780px; }
+.faq details {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 18px 22px; margin-bottom: 14px;
+}
+.faq summary {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.04rem;
+  cursor: pointer; list-style: none; display: flex; justify-content: space-between;
+  align-items: center; gap: 16px; color: var(--ink);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; font-size: 1.5rem; line-height: 1; color: var(--teal); flex-shrink: 0;
+}
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin-top: 12px; font-size: 0.98rem; }
+
+/* Neighborhood check list (plain two/three column list) */
+.col-list {
+  columns: 3; column-gap: 32px; list-style: none; margin: 0; padding: 0;
+}
+.col-list li {
+  font-size: 0.96rem; color: var(--ink-soft);
+  padding: 7px 0 7px 24px; position: relative; break-inside: avoid;
+}
+.col-list li::before {
+  content: ""; position: absolute; left: 0; top: 14px;
+  width: 9px; height: 9px; border-radius: 50%; background: var(--lime);
+}
+
+/* ---------- CONTACT FORM ----------
+   The card is the same shape as .side-card so the form sits in the page like
+   the other content blocks. Status messages are driven by assets/contact.js,
+   which sets data-state on .form-status — the element stays in the DOM (it is
+   an aria-live region) and is only revealed once there is something to say. */
+.contact-grid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: start;
+}
+.form-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  padding: 32px 30px; box-shadow: 0 10px 24px var(--shadow);
+}
+.field { display: block; margin-bottom: 20px; }
+.field > span {
+  display: block; margin-bottom: 7px;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+}
+.field .req { color: var(--coral); }
+.field input,
+.field textarea {
+  width: 100%; font: inherit; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+  padding: 13px 16px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field textarea { resize: vertical; min-height: 160px; line-height: 1.5; }
+.field input::placeholder,
+.field textarea::placeholder { color: color-mix(in srgb, var(--ink-soft) 60%, transparent); }
+.field input:focus,
+.field textarea:focus {
+  outline: none; border-color: var(--teal);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 22%, transparent);
+}
+/* Only flag a bad value once the browser has something to complain about —
+   :invalid alone would paint every required field red on first paint. */
+.field input:user-invalid,
+.field textarea:user-invalid { border-color: var(--coral); }
+.field .hint { display: block; margin-top: 6px; font-size: 0.85rem; color: var(--ink-soft); }
+
+.form-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.form-actions .cta-btn[disabled] { opacity: 0.65; cursor: progress; }
+.form-foot {
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line);
+  font-size: 0.88rem; color: var(--ink-soft);
+}
+
+.form-status {
+  display: none; margin-bottom: 22px; border-radius: var(--radius-card);
+  padding: 14px 18px; font-size: 0.95rem;
+  border: 1px solid var(--line);
+}
+.form-status[data-state="ok"],
+.form-status[data-state="error"] { display: block; }
+.form-status[data-state="ok"] {
+  background: color-mix(in srgb, var(--lime) 16%, transparent);
+  border-color: color-mix(in srgb, var(--lime) 45%, transparent);
+  color: var(--ink);
+}
+.form-status[data-state="error"] {
+  background: color-mix(in srgb, var(--coral) 14%, transparent);
+  border-color: color-mix(in srgb, var(--coral) 45%, transparent);
+  color: var(--ink);
+}
+
+/* Contact details list beside the form */
+.contact-list { list-style: none; margin: 22px 0 0; padding: 0; }
+.contact-list li { display: flex; gap: 14px; align-items: flex-start; margin-top: 20px; }
+.contact-list svg { width: 22px; height: 22px; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+.contact-list .label {
+  font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; display: block;
+}
+.contact-list a { text-decoration: none; }
+.contact-list a:hover { color: var(--teal); }
+.contact-list p { font-size: 0.94rem; margin-top: 2px; }
+
+/* ---------- QUOTE MODAL (multi-step form) --------------------------------
+   Injected into every page by assets/quote.js, opened by any link carrying
+   data-quote. Those links keep their href to contact.html, so with no
+   JavaScript the CTA still goes somewhere useful.                         */
+.quote-overlay { position: fixed; inset: 0; z-index: 200; display: none; }
+.quote-overlay[data-open] {
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.quote-backdrop {
+  position: absolute; inset: 0; border: none; padding: 0;
+  background: rgba(7, 26, 24, 0.62); cursor: pointer;
+}
+@supports (backdrop-filter: blur(3px)) {
+  .quote-backdrop { backdrop-filter: blur(3px); }
+}
+.quote-dialog {
+  position: relative;
+  width: min(660px, 100%); max-height: min(90vh, 880px); overflow-y: auto;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.38);
+  padding: 26px 34px 32px;
+}
+/* The dialog takes focus on open so the question is read before the answers.
+   That is a programmatic focus, not a keyboard one, so it gets no ring. */
+.quote-dialog:focus { outline: none; }
+.quote-close {
+  position: absolute; top: 18px; right: 18px;
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  color: var(--ink); cursor: pointer;
+}
+.quote-close svg { width: 18px; height: 18px; }
+.quote-close:hover { background: color-mix(in srgb, var(--coral) 18%, var(--bg-soft)); }
+
+/* Completion line */
+.quote-progress { margin: 0 52px 26px 0; }
+.quote-progress-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--font-display); font-size: 0.84rem; font-weight: 600;
+  color: var(--ink-soft); margin-bottom: 8px;
+}
+.quote-progress-head .pct { color: var(--teal); }
+.quote-track {
+  height: 8px; border-radius: 100px; background: var(--bg-soft);
+  border: 1px solid var(--line); overflow: hidden;
+}
+.quote-bar {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--teal), var(--lime));
+  border-radius: 100px; transition: width 0.4s ease;
+}
+
+/* Steps. They are <section>s inside the dialog, so the page-level section
+   padding has to be turned off here. */
+.quote-step { display: none; padding: 0; }
+.quote-step[data-current] { display: block; }
+.quote-step fieldset { border: none; margin: 0; padding: 0; min-width: 0; }
+.quote-step legend, .quote-step h2 {
+  font-family: var(--font-display); font-weight: 600; padding: 0;
+  font-size: clamp(1.35rem, 3vw, 1.7rem); line-height: 1.15; color: var(--ink);
+}
+.quote-step .sub { margin-top: 10px; font-size: 0.97rem; }
+
+/* Tick-box answers. Radios under the hood — one answer per question — but
+   drawn as check boxes, and the whole card is the hit area. */
+.quote-options {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px;
+}
+.quote-options.stack { grid-template-columns: 1fr; }
+.quote-option {
+  display: flex; align-items: center; gap: 13px;
+  padding: 16px 18px; border-radius: var(--radius-card); cursor: pointer;
+  background: var(--bg-soft); border: 2px solid transparent;
+  font-size: 0.99rem; font-weight: 500; color: var(--ink);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.quote-option:hover { border-color: color-mix(in srgb, var(--teal) 45%, transparent); }
+.quote-option input {
+  position: absolute; width: 1px; height: 1px; opacity: 0;
+}
+.quote-box {
+  width: 24px; height: 24px; border-radius: 8px; flex-shrink: 0;
+  border: 2px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  background: var(--card); display: grid; place-items: center;
+}
+.quote-box svg { width: 15px; height: 15px; color: #fff; opacity: 0; }
+.quote-option input:checked ~ .quote-box {
+  background: var(--teal); border-color: var(--teal);
+}
+.quote-option input:checked ~ .quote-box svg { opacity: 1; }
+.quote-option:has(input:checked) {
+  border-color: var(--teal);
+  background: color-mix(in srgb, var(--teal) 12%, var(--bg-soft));
+}
+.quote-option:has(input:focus-visible) {
+  outline: 3px solid var(--coral); outline-offset: 3px;
+}
+
+/* Last step — recap of the answers above the contact fields */
+.quote-recap {
+  margin: 20px 0 24px; padding: 18px 20px; border-radius: var(--radius-card);
+  background: var(--bg-soft); border: 1px solid var(--line);
+}
+.quote-recap dl { margin: 0; display: grid; gap: 8px; }
+.quote-recap div { display: flex; justify-content: space-between; gap: 16px; font-size: 0.92rem; }
+.quote-recap dt { color: var(--ink-soft); }
+.quote-recap dd { margin: 0; font-weight: 600; text-align: right; color: var(--ink); }
+.quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.quote-grid .field.full { grid-column: 1 / -1; }
+/* The page's textarea is 160px tall, which pushes Send below the fold in a
+   dialog. Shorter here — it is an optional extras box, not the main event. */
+.quote-grid textarea { min-height: 88px; }
+
+/* Foot: back on the left, next/send on the right */
+.quote-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-top: 26px;
+}
+.quote-back {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: none; border: none; cursor: pointer; padding: 8px 2px;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.94rem;
+  color: var(--ink-soft);
+}
+.quote-back svg { width: 15px; height: 15px; }
+.quote-back:hover { color: var(--teal); }
+.quote-back[hidden] { display: none; }
+
+/* Done panel */
+.quote-done { display: none; text-align: center; padding: 14px 0 6px; }
+.quote-done[data-current] { display: block; }
+.quote-done .tick {
+  width: 66px; height: 66px; border-radius: 50%; margin: 0 auto 22px;
+  background: color-mix(in srgb, var(--lime) 22%, transparent);
+  display: grid; place-items: center;
+}
+.quote-done .tick svg { width: 32px; height: 32px; color: var(--lime); }
+.quote-done h2 { margin-bottom: 12px; }
+.quote-done p { max-width: 420px; margin: 0 auto; }
+.quote-done .cta-btn { margin-top: 26px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .quote-step[data-current], .quote-done[data-current] {
+    animation: quote-step-in 0.32s ease both;
+  }
+  @keyframes quote-step-in {
+    from { opacity: 0; transform: translateX(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 880px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 34px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-art { order: -1; max-width: 320px; margin: 0 auto; }
+  .versus-grid { grid-template-columns: 1fr; }
+  .versus-vs { width: 100%; padding: 6px 0; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr; gap: 40px; }
+  /* Narrow screens get the 900px-wide source and a shallower band, so the
+     strip stays a band rather than a zoomed-in crop of one tree. */
+  .photo-strip {
+    height: clamp(190px, 46vw, 300px);
+    background-image: var(--hero-photo-sm, var(--hero-photo));
+  }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .cta-banner { padding: 40px 28px; }
+  .split-grid { grid-template-columns: 1fr; gap: 34px; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .area-grid { grid-template-columns: 1fr; }
+  .col-list { columns: 2; }
+
+  /* Narrow screens: scrim top-to-bottom instead of left-to-right, and size the
+     photo to full width rather than cover, so the whole composition (palms,
+     umbrellas, chairs) shows as a band under the copy instead of a zoomed-in
+     slice of it. */
+  .page-hero.has-photo {
+    background-image:
+      linear-gradient(to bottom,
+        var(--bg) 0%,
+        var(--bg) 64%,
+        color-mix(in srgb, var(--bg) 60%, transparent) 74%,
+        color-mix(in srgb, var(--bg) 10%, transparent) 86%,
+        transparent 97%),
+      linear-gradient(var(--photo-tint), var(--photo-tint)),
+      var(--hero-photo-sm);
+    background-size: cover, cover, 100% auto;
+    background-position: center, center, center bottom;
+  }
+  .page-hero.has-photo > .wrap { padding-bottom: 240px; }
+  .page-hero.has-photo .hero-copy { max-width: none; }
+
+  /* Banner heroes stay a banner on narrow screens — the photo keeps filling
+     the section behind the copy instead of dropping to a band beneath it. */
+  .page-hero.has-photo.photo-banner {
+    background-image:
+      linear-gradient(var(--photo-wash), var(--photo-wash)),
+      var(--hero-photo-sm);
+    background-size: cover, cover;
+    background-position: center, center 72%;
+    padding-top: 64px;
+  }
+  .photo-banner > .wrap { padding-bottom: 64px; }
+}
+@media (max-width: 560px) {
+  /* Brand + quote button + burger stop fitting on a phone, and the burger is
+     what gets pushed off the edge — so the button steps out of the top row
+     here. The drawer already carries its own copy of it. */
+  .nav-row > .cta-btn { display: none; }
+  .nav-row { padding: 14px 20px; }
+
+  .form-card { padding: 26px 22px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .hero { padding-top: 52px; }
+  section { padding: 60px 0; }
+  .page-hero { padding: 44px 0 0; }
+  .page-hero > .wrap { padding-bottom: 40px; }
+  .stat-row { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .col-list { columns: 1; }
+  .callout { flex-direction: column; gap: 12px; }
+
+  /* Phone: the dialog takes the whole screen, and answers stack so labels
+     aren't squeezed into two narrow columns. */
+  .quote-overlay[data-open] { padding: 0; }
+  .quote-dialog {
+    width: 100%; max-height: 100%; min-height: 100%;
+    border-radius: 0; border: none; padding: 22px 20px 32px;
+  }
+  .quote-options { grid-template-columns: 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-grid > *,
+  .page-hero .reveal { animation: rise 0.7s ease both; }
+  .hero-grid > *:nth-child(2) { animation-delay: 0.08s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

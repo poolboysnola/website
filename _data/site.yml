@@ -1,0 +1,77 @@
+# ==========================================================================
+# Pool Boys NOLA — shared site details
+# --------------------------------------------------------------------------
+# This is the one place to change the brand details, the navigation, and the
+# footer link columns. _includes/header.html and _includes/footer.html read
+# from here, and Jekyll rebuilds every page on push.
+#
+# It replaces the SITE object that used to live at the top of assets/site.js.
+#
+# `id` on a link matches the `page_id` in a page's front matter, which is how
+# the current page gets aria-current="page" in the nav.
+# ==========================================================================
+
+name: Pool Boys NOLA
+tagline: >-
+  Powered by chemistry — and a genuine love of clear, blue water. Salt or
+  chlorine, we speak your pool’s language.
+home: index.html
+
+# --- Contact details: change these in one place ---------------------------
+email: hello@poolboysnola.com
+phone_label: (555) 010-POOL
+phone_href: tel:+15550107665
+service_area_short: Greater New Orleans
+
+# --- Top navigation -------------------------------------------------------
+nav:
+  - label: Home
+    href: index.html
+    id: home
+  - label: Pool maintenance
+    href: pool-maintenance.html
+    id: pool-maintenance
+  - label: Green pool recovery
+    href: green-pool-recovery.html
+    id: green-pool-recovery
+  - label: Saltwater care
+    href: saltwater-care.html
+    id: saltwater-care
+  - label: FAQ
+    href: faq.html
+    id: faq
+  - label: Contact
+    href: contact.html
+    id: contact
+
+cta:
+  label: Get a free quote
+  href: contact.html
+
+# --- Footer link columns --------------------------------------------------
+footer_columns:
+  - title: Services
+    links:
+      - label: Pool maintenance
+        href: pool-maintenance.html
+        id: pool-maintenance
+      - label: Green pool recovery
+        href: green-pool-recovery.html
+        id: green-pool-recovery
+      - label: Saltwater care
+        href: saltwater-care.html
+        id: saltwater-care
+      - label: FAQ
+        href: faq.html
+        id: faq
+  - title: Company
+    links:
+      - label: About us
+        href: about.html
+        id: about
+      - label: Service area
+        href: service-area.html
+        id: service-area
+      - label: Contact us
+        href: contact.html
+        id: contact

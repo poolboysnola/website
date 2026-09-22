@@ -1,0 +1,38 @@
+<!-- ==========================================================================
+     Pool Boys NOLA — site header
+     --------------------------------------------------------------------------
+     Included by every page, so the nav ships in the served HTML rather than
+     being written by JavaScript after load. That is the point of the
+     include: crawlers see the internal links without having to run a script.
+
+     Links and labels come from _data/site.yml. A page marks itself current by
+     setting `page_id:` in its front matter, which is matched against each
+     link's `id` below.
+     ========================================================================== -->
+{%- assign home_href = site.data.site.home -%}
+{%- if page.page_id == 'home' -%}{%- assign home_href = '#top' -%}{%- endif -%}
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+  <div class="nav-row">
+    <a href="{{ home_href }}" class="brand">
+      {% include brand-mark.html %}
+      <span class="brand-name">{{ site.data.site.name }}</span>
+    </a>
+    <nav class="links" aria-label="Main">
+      {%- for item in site.data.site.nav %}
+      <a href="{{ item.href }}"{% if item.id == page.page_id %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {%- endfor %}
+    </nav>
+    <a href="{{ site.data.site.cta.href }}" class="cta-btn" data-quote>{{ site.data.site.cta.label }}</a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    {%- for item in site.data.site.nav %}
+    <a href="{{ item.href }}"{% if item.id == page.page_id %} aria-current="page"{% endif %}>{{ item.label }}</a>
+    {%- endfor %}
+    <a href="{{ site.data.site.cta.href }}" class="cta-btn" data-quote>{{ site.data.site.cta.label }}</a>
+  </nav>
+</header>
