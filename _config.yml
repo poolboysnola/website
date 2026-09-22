@@ -18,7 +18,11 @@ title: Pool Boys NOLA
 description: >-
   Weekly pool cleaning, maintenance, water chemistry, and saltwater care
   throughout Greater New Orleans.
-url: https://poolboysnola.com
+url: https://poolboysnola.github.io/website
+
+# The custom domain is currently planned but not yet connected.
+# Once poolboysnola.com is connected to GitHub Pages, this should remain:
+baseurl: ""
 
 # Keep the source files out of the built site.
 exclude:
