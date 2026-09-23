@@ -45,29 +45,111 @@
       "@id": "{{ site.url }}/#organization",
       "name": "{{ site.data.site.name }}",
       "url": "{{ site.url }}/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/images/logo.png"
+      },
+      "description": "Pool Boys NOLA provides pool cleaning, weekly pool maintenance, water testing, chemical balancing, saltwater pool care, and green pool recovery in Greater New Orleans.",
       "email": "{{ site.email }}",
-      "telephone": "{{ site.phone }}"
+      "telephone": "{{ site.phone }}",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "{{ site.phone }}",
+        "areaServed": "Greater New Orleans",
+        "availableLanguage": [
+          "English",
+          "Spanish"
+        ]
+      },
+      "sameAs": [
+        "{{ site.facebook_url }}",
+        "{{ site.instagram_url }}",
+        "{{ site.google_business_url }}"
+      ]
     },
     {
       "@type": "LocalBusiness",
       "@id": "{{ site.url }}/#localbusiness",
       "name": "{{ site.data.site.name }}",
+      "url": "{{ site.url }}/",
       "image": "{{ site.url }}/images/pool-boys-map-1200.jpg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/images/logo.png"
+      },
       "telephone": "{{ site.phone }}",
       "email": "{{ site.email }}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ site.streetAddress }}",
+        "addressLocality": "{{ site.addressLocality }}",
+        "addressRegion": "{{ site.addressRegion }}",
+        "postalCode": "{{ site.postalCode }}",
+        "addressCountry": "{{ site.addressCountry }}"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "{{ site.latitude }}",
+        "longitude": "{{ site.longitude }}"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday", 
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      ],
       "areaServed": [
-        "Uptown", "Garden District", "Lower Garden District", "Carrollton",
-        "Mid-City", "Broadmoor", "Lakeview", "Lakefront", "Gentilly",
-        "Marigny", "Bywater"
+        "Uptown",
+        "Garden District",
+        "Lower Garden District",
+        "Carrollton",
+        "Mid-City",
+        "Broadmoor",
+        "Lakeview",
+        "Lakefront",
+        "Gentilly",
+        "Marigny",
+        "Bywater"
       ],
       "priceRange": "$$"
     },
     {
-      "@type": "WebSite",
-      "@id": "{{ site.url }}/#website",
-      "url": "{{ site.url }}/",
-      "name": "{{ site.data.site.name }}",
-      "publisher": { "@id": "{{ site.url }}/#organization" }
+    "@type": "WebSite",
+    "@id": "{{ site.url }}/#website",
+    "url": "{{ site.url }}/",
+    "name": "{{ site.data.site.name }}",
+    "description": "Pool Boys NOLA provides weekly pool cleaning, pool maintenance, water testing, chemical balancing, saltwater pool care, and green pool recovery throughout Greater New Orleans.",
+    "publisher": {
+      "@id": "{{ site.url }}/#organization"
+    },
+    "potentialAction": {
+      "@type": "ContactAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ site.url }}/contact.html"
+      },
+      "name": "Request a Pool Service Quote"
+    },
+    "sameAs": [
+      "{{ site.facebook_url }}",
+      "{{ site.instagram_url }}",
+      "{{ site.google_business_url }}"
+    ]
+
+
+
+
     }
   ]
 }

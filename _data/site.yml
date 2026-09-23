@@ -26,6 +26,15 @@ facebook_url: "YOUR FACEBOOK URL"
 instagram_url: "YOUR INSTAGRAM URL"
 google_business_url: "YOUR GOOGLE BUSINESS PROFILE URL"
 
+streetAddress: "YOUR STREET ADDRESS"
+addressLocality": "New Orleans"
+addressRegion: "LA"
+postalCode: "17019"
+addressCountry: "US"
+
+latitude: "YOUR LATITUDE"
+longitude: "YOUR LONGITUDE"
+
 # --- Top navigation -------------------------------------------------------
 nav:
   - label: Home
