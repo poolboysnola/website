@@ -23,6 +23,8 @@ url: https://poolboysnola.github.io/website
 # The custom domain is currently planned but not yet connected.
 # Once poolboysnola.com is connected to GitHub Pages, this should remain:
 baseurl: ""
+phone: 504-555-5555
+email: hello@poolboysnola.com
 
 # Keep the source files out of the built site.
 exclude:

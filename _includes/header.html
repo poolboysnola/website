@@ -36,3 +36,39 @@
     <a href="{{ site.data.site.cta.href }}" class="cta-btn" data-quote>{{ site.data.site.cta.label }}</a>
   </nav>
 </header>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "{{ site.data.site.name }}",
+      "url": "{{ site.url }}/",
+      "email": "{{ site.email }}",
+      "telephone": "{{ site.phone }}"
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "{{ site.url }}/#localbusiness",
+      "name": "{{ site.data.site.name }}",
+      "image": "{{ site.url }}/images/pool-boys-map-1200.jpg",
+      "telephone": "{{ site.phone }}",
+      "email": "{{ site.email }}",
+      "areaServed": [
+        "Uptown", "Garden District", "Lower Garden District", "Carrollton",
+        "Mid-City", "Broadmoor", "Lakeview", "Lakefront", "Gentilly",
+        "Marigny", "Bywater"
+      ],
+      "priceRange": "$$"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "{{ site.data.site.name }}",
+      "publisher": { "@id": "{{ site.url }}/#organization" }
+    }
+  ]
+}
+</script>
