@@ -1,5 +1,8 @@
+
+---
+---
 User-agent: *
 Allow: /
  
-Sitemap: https://poolboysnola.com/sitemap.xml
+Sitemap: {{ site.url }}/sitemap.xml
  
