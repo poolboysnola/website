@@ -13,7 +13,7 @@ description: "Weekly pool cleaning, maintenance, water chemistry, and saltwater 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 <meta property="og:title" content="Pool Service New Orleans | Pool Boys NOLA">
-<meta property="og:description" content="Weekly pool cleaning, maintenance, water chemistry, and saltwater care throughout Greater New Orleans.">
+<meta property="og:description" content="{{ page.description }}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
 
@@ -27,6 +27,34 @@ description: "Weekly pool cleaning, maintenance, water chemistry, and saltwater 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "{{ site.url }}{{ site.baseurl }}/#organization",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}{{ site.baseurl }}/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ site.url }}{{ site.baseurl }}images/logo.png"
+  },
+  "description": "Pool Boys NOLA provides pool cleaning, weekly pool maintenance, water testing, chemical balancing, saltwater pool care, and green pool recovery in Greater New Orleans."
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "{{ site.phone }}",
+    "areaServed": "{{ site.area_served }}",
+    "availableLanguage": ["English", "Spanish"]
+  },
+  "sameAs": [
+    "{{ site.facebook_url }}",
+    "{{ site.instagram_url }}",
+    "{{ site.google_business_url }}"
+  ]
+
+}
+</script>
 </head>
 <body data-page="{{ page.page_id }}">
 

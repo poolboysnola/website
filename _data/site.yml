@@ -22,6 +22,9 @@ email: hello@poolboysnola.com
 phone_label: (555) 010-POOL
 phone_href: tel:+15550107665
 service_area_short: Greater New Orleans
+facebook_url: "YOUR FACEBOOK URL"
+instagram_url: "YOUR INSTAGRAM URL"
+google_business_url: "YOUR GOOGLE BUSINESS PROFILE URL"
 
 # --- Top navigation -------------------------------------------------------
 nav:
